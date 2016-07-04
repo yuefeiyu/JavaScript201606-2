@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:300px;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            position: absolute;
+            left:1000px;
+            top:0;
+            background: red;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    /*
+    * t time时间--走了多久的时间
+    * b begin 起始位置
+    * c 要走的总距离
+    * d duration 总共需要走的时间
+    * */
+    //c*t/d+b;
+    //如果不加b，我们初识位置从0开始而不是从300开始，为了实现从300开始走到1000的位置，必须+b;
+    function Linear(t,b,c,d){//tween公式-匀速公式
+        return c*t/d+b;
+    }
+    var oDiv=document.getElementById('div1');
+    //一下5个都是用来设置匀速公式的参数值；
+    var begin=utils.css(oDiv,'left');
+    var target=1000;
+    var change=target-begin;
+    var duration=1000;//自己设定总时间
+    var time=0;
+    var timer=setInterval(function(){
+        //时间的累加
+        time+=10;
+        //当时间超过总时间的时候，直接把物体设置到目标值上；
+        if(time>=duration){
+            utils.css(oDiv,'left',target)
+            clearInterval(timer);
+            return;
+        }
+        //通过匀速公式，求出每次物体所在的新位置；
+        var curLeft=Linear(time,begin,change,duration);
+        //设置物体所在的新位置；
+        utils.css(oDiv,'left',curLeft);
+    },10)
+
+</script>
+</body>
+</html>

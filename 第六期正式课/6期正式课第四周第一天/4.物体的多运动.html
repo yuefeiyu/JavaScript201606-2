@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:300px;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="utils.js"></script>
+<script>
+    //Linear公式
+    function Linear(t,b,c,d){
+        return c*t/d+b;
+    }
+    var oDiv=document.getElementById('div1');
+    //初始位置：初始left值，初始的top值；
+    var beginLeft=utils.css(oDiv,'left'),beginTop=utils.css(oDiv,'top');
+    //目标位置：left和top的目标值
+    var targetLeft=1000,targetTop=500;
+    //要求的距离：left,top
+    var changeLeft=targetLeft-beginLeft,changeTop=targetTop-beginTop;
+    var duration=1000;//要走的总时间
+    var time=null;
+    var timer=setInterval(function(){
+        time+=10;//初始时间不断的累加
+        if(time>=duration){//当time累加值超过duration总时间的时候，把物体设置到目标值；同时停止运动
+            utils.css(oDiv,{
+                left:targetLeft,
+                top:targetTop
+            });
+            clearInterval(timer);
+            return;
+        }
+        //每次获取最新的位置：left值，top值
+        var curLeft=Linear(time,beginLeft,changeLeft,duration);
+        var curTop=Linear(time,beginTop,changeTop,duration);
+        //设置物体最新的位置；
+        utils.css(oDiv,{
+            left:curLeft,
+            top:curTop
+        })
+    },10)
+</script>
+</body>
+</html>

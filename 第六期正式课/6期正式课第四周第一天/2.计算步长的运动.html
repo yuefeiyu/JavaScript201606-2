@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            position: absolute;
+            left:1000px;
+            top:0;
+            background: red;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    //计算步长的运动
+    var oDiv=document.getElementById('div1');
+    var target=utils.win('clientWidth')-utils.css(oDiv,'width');
+    var duration=1000;
+    var interval=30;
+    var step=target/duration*interval;
+    var timer=setInterval(function(){
+        var curLeft=utils.css(oDiv,'left');
+        if(curLeft+step>=target){
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+        curLeft+=step;
+        utils.css(oDiv,'left',curLeft);
+    },interval)
+</script>
+</body>
+</html>

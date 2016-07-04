@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:300px;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            position: absolute;
+            left:1000px;
+            top:0;
+            background: red;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    //t:time b:begin c:target-begin d:duration
+    //求出你现在所在的位置
+    //c*t/d 求出你走了多远
+    //新位置 原来的位置+你走了多远；
+    function Linear(t,b,c,d){
+        return c*t/d+b;
+    }
+    var oDiv=document.getElementById('div1');
+    //为匀速公式的参数求值；
+    var begin=utils.css(oDiv,'left');
+    var target=1000;
+    var change=target-begin;
+    var duration=600;
+    var time=null;
+    //开启定时器，目的是为了累加时间，并且给物体设置最新的位置；
+    var timer=setInterval(function(){
+        time+=10;
+        if(time>=duration){
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+        //每次根据公式求出最新的位置
+        var curLeft=Linear(time,begin,change,duration);
+        //给物体设置最新的位置；
+        utils.css(oDiv,'left',curLeft);
+    },10)
+
+</script>
+</body>
+</html>

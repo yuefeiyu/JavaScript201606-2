@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 100px;
+            left: 500px;
+        }
+        input{
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="向左走"/>
+<input type="button" value="向右走"/>
+<div id="div1"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var aBtn=document.getElementsByTagName('input');
+    aBtn[1].onclick=function(){
+        move(1200);
+    };
+    aBtn[0].onclick=function(){
+        move(0);
+    }
+    function move(target){
+        _move();
+        function _move(){
+            if(utils.css(oDiv,'left')<target){
+                //向右走
+                var curLeft=utils.css(oDiv,'left');
+                if(curLeft+10>=target){
+                    utils.css(oDiv,'left',target);
+                }
+                curLeft+=10;
+                utils.css(oDiv,'left',curLeft)
+
+            }else if(utils.css(oDiv,'left')>target){
+                //向左走
+                var curLeft=utils.css(oDiv,'left');
+                if(curLeft-10<=target){
+                    utils.css(oDiv,'left',target)
+                }
+                curLeft-=10;
+                utils.css(oDiv,'left',curLeft)
+            }else{
+                return;
+            }
+            //开启一个定时器前先关闭一个定时器；
+            clearInterval(oDiv.timer);
+            //为了避免私有定时器的冲突，可以定义一个全局变量timer，但是全局变量不好，我们可以把定时器保存在自定义属性上；
+            oDiv.timer=setTimeout(_move,10)
+        }
+    }
+</script>
+</body>
+</html>

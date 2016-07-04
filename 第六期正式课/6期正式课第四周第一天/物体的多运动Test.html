@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 100px;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    function linear(t,b,c,d){
+        return c*t/d+b
+    }
+    var beginLeft=utils.css(oDiv,'left');
+    var beginTop=utils.css(oDiv,'top');
+    var targetLeft=1000,targetTop=500;
+    var duration=1000;
+    var time=null;
+    var changeLeft=targetLeft-beginLeft,changeTop=targetTop-beginTop;
+
+    var timer=setInterval(function(){
+        time+=10;
+        if(time>=duration){
+            utils.css(oDiv,{
+                left:targetLeft,
+                top:targetTop
+            });
+            clearInterval(timer);
+            return;
+        }
+        var curLeft=linear(time,beginLeft,changeLeft,duration);
+        var curTop= linear(time,beginTop,changeTop,duration);
+        utils.setCss(oDiv,'left',curLeft)
+        utils.setCss(oDiv,'top',curTop)
+    },10)
+</script>
+</body>
+</html>

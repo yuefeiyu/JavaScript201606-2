@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            position: absolute;
+            left:1000px;
+            top:0;
+            background: red;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    //获取元素
+    var oDiv=document.getElementById('div1');
+    //在可视区范围内，能走的最大距离：可视区的宽度-元素的宽度；
+    var target=utils.win('clientWidth')-utils.css(oDiv,'width');//设定目标值
+    var step=30;//设定固定步长
+    var timer=setInterval(function(){
+        //获取当前最新的位置
+        var curLeft=utils.offset(oDiv).left;
+        //停止条件：当最新距离+step》=target时，停止
+        if(curLeft+step>=target){//小思想：边界值判断
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+         //每次在最新的距离上加上固定步长
+        curLeft+=step;
+        utils.css(oDiv,'left',curLeft);
+    },10)
+</script>
+</body>
+</html>
