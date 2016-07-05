@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            position: absolute;
+            left:300px;
+            top:50px;
+            width: 100px;
+            height:100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="utils.js"></script>
+<script src="move.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    zhufengAnimate(oDiv,{
+        left:1200,
+        top:400
+    },1000,['Expo','easeOut'],function(){
+        this.style.background='blue';
+    })
+    /*//t:time b:begin c:change d:duration总时间
+    function Linear(t,b,c,d){
+        return c*t/d+b;
+    }
+    var oDiv=document.getElementById('div');
+    //{left:utils.css(curEle,'left'),top:xxx}
+    var beginLeft=utils.css(oDiv,'left'),beginTop=utils.css(oDiv,'top');
+   // var targetLeft=utils.win('clientWidth')-utils.css(oDiv,'width'),targetTop=utils.win('clientHeight')-utils.css(oDiv,'height');//{left:1200,top:800}
+    var targetLeft=1200,targetTop=400;
+    var changeLeft=targetLeft-beginLeft,changeTop=targetTop-beginTop;
+    var duration=1000;
+    var time=null;
+    //开启一个定时器，不断的累加时间，通过公式获取新位置并且设置新位置；
+    //停止条件：time>=duration
+    var timer=setInterval(move,10);
+    function move(){
+        time+=10;
+        if(time>=duration){
+            utils.css(oDiv,{
+                left:targetLeft,
+                top:targetTop,
+                background:'green'
+            })
+            clearInterval(timer);
+            return;
+        }
+        var curLeft=Linear(time,beginLeft,changeLeft,duration);
+        var curTop=Linear(time,beginTop,changeTop,duration);
+        utils.css(oDiv,{
+            left:curLeft,
+            top:curTop
+        })
+    }*/
+</script>
+</body>
+</html>

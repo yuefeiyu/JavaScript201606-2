@@ -1,0 +1,59 @@
+1.封装运动库的思路
+    1.写公式
+    var zhufengEffect={
+        Linear:function(t,b,c,d){
+            return c*t/d+b;
+        }
+    }
+    2.封装一个move方法
+        4.tween系列公式
+            1.effect 如果是个数字
+                1）把数字做为索引取到数组对应的字符串
+                2）通过“-”拆分字符串
+                3）当数组长度>=2?zhufengEffect[ary[0]][ary[1]]:zhufengEffect[ary[0]];
+            2.effect 如果是个对象
+            当数组长度>=2?zhufengEffect[effect[0]][effect[1]]:zhufengEffect[effect[0]];
+            3.effect 如果是个函数
+            callback=effect;
+        1.准备linear公式中的参数值,并且填充完begin,change
+        var begin ,change,duration,time
+        2.填充begin,change
+        通过for in target这个对象
+        3.开启一个定时器
+            1）累加时间--停止条件：累加的time>=duration
+                当停止条件满足时：
+                    1）把物体直接设置到target上
+                    2）关闭定时器
+                    3）判断是否有回调函数，如果有就执行，同时改变this指向
+                    4）return； 阻断程序执行的作用；
+            2）获取最新位置
+            3）分别设置最新位置
+2.a链接的作用
+1）链接跳转
+2）如果href里是#默认跳转到顶部
+3）页面中各个模块之间的跳转
+4）如果不想实现跳转，可以给href="javascript:;"在冒号和分号之间是一段空的JS代码；
+href="javascript:void(0);"
+href="javascript:;"(他最常用)
+3.基础版左右切换的轮播图--分析
+1）图片自动轮播 :定时器+autoMove
+2）焦点按钮自动轮播：在哪里调用已经封装好的bannerTip;
+3）鼠标移入停止运动，鼠标移出继续运动
+移入：显示左右按钮
+移出：隐藏左右按钮
+4）点击焦点手动切换:handleChange---通过索引改变step;别忘记通过step改变图片运动和焦点运动
+5）点击左右按钮手动切换
+    1）点击向右的按钮=autoMove
+    2)点击向左的按钮：step--;同时判断step为<=0的情况
+4.关于引入JS的顺序
+1）utils.js
+2)move.js:因为move要用到utils里面的内容
+3）banner.js：因为banner要用到以上两者中的内容
+
+
+
+
+
+
+
+

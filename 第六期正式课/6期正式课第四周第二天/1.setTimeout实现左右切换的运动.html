@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 100px;
+            height:100px;
+            background: red;
+            position: absolute;
+            left: 500px;
+            top:100px;
+        }
+        input{
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="向左走"/>
+<input type="button" value="向右走"/>
+<div id="div"></div>
+<script src="utils.js"></script>
+<script>
+    //核心思想:目标值 和 现在位置的比较 left
+    var oDiv=document.getElementById('div');
+    var aBtn=document.getElementsByTagName('input');
+    var max=1200;
+    var min=0;
+    aBtn[1].onclick=function(){
+        move(max);
+    };
+    aBtn[0].onclick=function(){
+        move(min);
+    };
+    function move(target){
+        _move();
+        function _move(){
+            var curPos=utils.css(oDiv,'left');
+            //当前位置和目标值的比较；
+            if(curPos<target){//right
+                //每次都在当前位置上+=step；总有一天，新位置比目标位置大，把位置设置到目标值，然后停止运动；
+                if(curPos+10>=target){//避免超出目标位置再折回或者出现滚动--解决：边界值判断
+                    utils.css(oDiv,'left',target);
+                    return;
+                }
+                curPos+=10;
+            }else if(curPos>target){//left
+                if(curPos-10<=target){
+                    utils.css(oDiv,'left',target);
+                    return;
+                }
+                curPos-=10;
+            }else{
+                return;
+            }
+            utils.css(oDiv,'left',curPos)//设置物体的最新位置
+            clearTimeout(oDiv.timer)//开启一个定时器前，先清除无用的定时器
+            oDiv.timer=setTimeout(_move,10)//通过setTimeout实现函数自己调用自己；--递归；
+            //_move解决了匿名函数不销毁的问题；
+        }
+    }
+</script>
+</body>
+</html>
