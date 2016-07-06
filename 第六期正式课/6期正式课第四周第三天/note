@@ -1,0 +1,80 @@
+1.JS中的异步
+1）定时器
+2）事件
+3）ajax
+4）回调函数
+2.关于普通函数改成构造函数的思路
+1）把全局变量都变成私有属性--私有属性都在构造函数里
+2）把全局函数都变成公有方法--prototype上
+3）如果给prototype={}，注意constructor指向
+4）init：初始化函数；这里面放的就是函数调用的思路
+    //1.getData
+    //2.bind
+    //3.lazyImg
+    //4.
+    clearInterval(autoTimer);
+    autoTimer=setInterval(autoMove,interval);
+    //5.bannerTip;
+    //6.移入移出 overOut
+    //7.handleChange
+    //8.leftRight左右按钮切换
+5)改this；
+
+3.总结以前学过的this
+1）当元素的事件被触发，执行一个函数的时候，函数中的this指向当前元素
+2）定时器中的this-window（定时器中的函数时回调函数）
+3）自执行函数中的this - window
+4）构造函数中的this--实例
+5）以上都失效：call,bind,apply都可以更改this指向；
+6)函数调用时，点前面是谁，this就是谁；
+
+4.写运动库的思路：
+1）传参：curEle,target,duration,effect,callback
+2)开始为zhufengEffect.Linear(t,b,c,d);里面的参数t,b,c,d做准备
+3）var begin={}; var change={}; var t=null;
+通过for in target来填充begin和change；
+4）当所有参数都准备好的时候，开启定时器
+    3）添加各种各样的运动效果
+        1）默认的运动效果 tmpEffect=zhufengEffect.Linear;
+        2)判断
+            1）当effect是数字，把数字做为索引（%的思想），取出数组中对应的字符串效果；
+            2）当effect是对象['xxx','easeIn']=>zhufengEffect[xxx]["easeIn"]
+            3)当effect是函数，说明用户相传的是回调函数，此时给callback=effect;
+    1）累加时间 time
+        停止条件：time>=duration
+            1)满足停止条件时，让物体到目标值target；
+            2)clearInterval();
+            3)运动结束后，还想干什么事 ：callback && callback.call(curEle);
+            4)return;
+    2)遍历对象，分别获取最新位置（通过公式Linear）,分别设置最新位置；
+5.左右切换的轮播图思路--完整版
+1）获取并解析数据，4步骤
+2）绑定数据 --字符串拼接来绑定
+3）图片延迟加载--2）这步拼接的图片，应该realImg来存放图片真正的地址；
+               遍历所有的图片元素；分别创建img对象，用他来测试我们的图片地址是否正确；
+               当onload加载成功的时候，才把正确的地址赋值给图片的src;
+   注意问题：onload是异步，所以外面循环中的i值，在onload里一定出错；
+   解决方式：思路1）自定义属性
+            思路2）闭包
+4）自动播放轮播图 开启一个定时器,建立一个公有的step,现在可以用step来控制图片的轮播，以后，可以用step来建立 图片和按钮之间的联系；
+5）焦点自动轮播； 注意：焦点封装的函数在哪里调用？在autoMove里面调用，因为autoMove中step发生了改变
+6）鼠标移入移出：移入停止运动，移出继续运动
+               移入显示左右按钮，移出隐藏左右按钮
+7）焦点图手动切换，核心思想：点击每个按钮的时候，把这个按钮的索引做为step，用过step去运动改变left； zhufengEffect(...);别忘了把焦点也改变 bannerTip();
+8)点击左右按钮切换轮播图
+    点击右按钮=autoMove;
+    点击左按钮，让step不断--;
+        注意：当step<=0的时候，让step=aLi.length;让oBoxInner迅速到达索引为4的那一张；（实际就是跟第一张长得一模一样的第5张）；
+        step--;//真正的最后一张，不是跟第一张一样的；
+        zhufengAnimate()
+
+
+
+
+
+
+
+
+
+
+
