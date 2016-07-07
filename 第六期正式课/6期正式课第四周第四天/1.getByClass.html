@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function getByClass(strClass,curEle){
+        curEle=curEle||document;
+        if('getComputedStyle' in window){
+            return Array.prototype.slice.call(curEle.getElementsByClassName(strClass))
+        }
+        var ary=[];
+        var aryClass=strClass.replace(/(^ +)|( +$)/g,'').split(/\s+/g);
+        var nodeList=curEle.getElementsByTagName('*');
+        for(var i=0; i<nodeList.length; i++){
+            var curList=nodeList[i];
+            var bOk=true;
+            for(var k=0; k<aryClass.length; k++){
+                var reg=new RegExp('\\b'+aryClass[k]+'\\b');
+                if(!reg.test(curList.className)){
+                    bOk=false;
+                }
+            }
+            if(bOk){
+                ary.push(curList)
+            }
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>
