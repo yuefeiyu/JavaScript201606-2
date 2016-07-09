@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li{
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var ary=[23,43,21,24,52];
+    var obj={name:'zhufeng',age:9}
+    //区分 $.xxx(); --$.ajax() 和 $().xxx(); --$('div').eq()
+    //$-jQuery类 $.xxx() 类的方法; $('div')-实例；$('div').eq()实例的方法--挂在原型上；
+    //如果想扩展jquery插件有两种方法：
+        //1.类扩展方法 $.extend - 实例不能用，只能通过类来调用
+        //2.$.fn==jQuery.prototype=>给原型扩展公有方法，$.fn.extend
+    /*$('li').each(function(index,item){
+        //注意：each里的item是原生JS元素
+       // item.style.background='red';
+        $(item).css('background','green')
+    });*/
+    $.each(document.getElementsByTagName('li'),function(index,item){
+        //$(item).css('background','yellow')
+        console.log(index)
+    })
+</script>
+</body>
+</html>

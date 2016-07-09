@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var data=null;
+    $.ajax({
+        url:'json/data.txt',
+        type:'get',
+        async:false,
+        dataType:'json',//text的文本格式，
+        success:function(val){
+            data=val;
+        }
+    })
+    console.log(data)
+</script>
+</body>
+</html>

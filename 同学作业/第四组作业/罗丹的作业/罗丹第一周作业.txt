@@ -1,0 +1,98 @@
+一：
+1.基本数据类型：数字number，字符串string，布尔boolean，null,undefined  按值操作
+  引用数据类型：函数function,对象object  操作的是内存空间的地址
+
+2.typeof,constructor,instanceof,Object.prototype.toString.call();isNaN()
+
+3.用arguments,Number(),parseInt(),parseFloat(),
+
+二：
+1.var oDiv=document.getElementbyId('div1');
+  var oDiv=document.getElementsbyclassName('w')[0];
+  var oDiv=document.getElementsbyName('h')[0];
+  var oDiv=document.getElementsbyTagName('h')[0];
+  var oDiv=document.querySelector('div')
+  var oDiv=document.querySelector('.w')
+  var oDiv=document.querySelector('#div1')
+
+2.document.documentElement.clientWidth || document.body.clientWidth;
+  document.documentElement.clientHeight || document.body.clientHeight;
+  
+  function getbro(curEle){
+   
+	if('previousElementSibling'in curEle){
+		return curEle.previousElementSibling;
+	}
+	var prev=curEle.previousSibling;
+	while(prev && prev.nodeType !==1){
+		prev=prev.previousSibling;
+	}
+	return prev;
+
+}
+
+   var oDiv=document.creatElement('div');
+   document.body.appdendChild(oDiv);
+   var oDiv1=oDiv.cloneNode(true);
+   document.body.insertBefore(oDiv1,oDiv);
+
+三：
+1.pop(),ary.length--;ary.splice(ary.length-1,1)
+  push(),ary[ary.length]='',ary.splice(ary.length,0,'')
+2.ary.concat(),ary.slice(),ary.slice(0),ary.splice(0)
+3.ary.sort(function(a,b){return a-b;})
+  ary.slice(n-1,m)
+四：
+  []==false：_____true_______    ![]==false：______true______   []==![]：  ______true________   Number(“13px”)==NaN：_____false ______  5+”3”-2：  _________51__________；
+  
+  If(“3px”*3){alert(“true”)}else{alert(“false”)}：_____”false”_______       If(“3px”+3){alert(“true”)}else{alert(“false”)}：_____”true”______
+
+  If（document.body）{alert(“ok”);}else{alert(“no”)}：________”ok”_______     alert([])：______””______    null==undefined：_______true_________
+五：
+   var oInp=document.getElementsByTagName('input');
+    for(var i=0;i<oInp.length;i++){
+        oInp[i].index=i;
+        oInp[i].onclick=function(){
+            document.body.style.background=ary[this.index];
+        }
+    }
+   
+    或者
+    var oInp=document.getElementsByTagName('input');
+    for(var i=0;i<oInp.length;i++){
+        (function(index){
+            oInp[index].onclick=function(){
+                document.body.style.background=ary[index];
+            }
+        })(i)
+    }
+六：
+  [0,2,3,4];
+  [100];
+选择题：
+1. B、undefined undefined 12 
+2. A、undefined  12 13
+3. D、有程序报错
+4. B、10
+5. C、11 12 0
+6. A、1 11 3
+7. B、undefined 
+8. B、3  10  4
+9. A、hello hello hello
+10.D、以上答案都不正确//5,5,6,2 
+
+
+思考题：
+1、document.parentNode的值是什么，为什么
+null，document节点没有父节点，所以为null
+2、document.parentnode的值是什么，为什么
+undefined , js中读取不存在的对象属性返回undefined
+3、prototype是谁的属性，它起什么作用？__proto__是谁的属性，它有什么作用？prototype和__proto__有什么联系？
+创建每个新函数都会有一个prototype属性，这个属性指向函数的原型对象
+__prototype__是对象实例的属性，指向构造函数的原型对象，表明对象实例和原型对象之间的联系
+4、hasOwnProperty和in都是用来判断对象的属性的，这两个是怎么用的，有什么区别？
+hasOwnProperty 检测属性是否是对象实例的私有属性
+in 检测对象的属性，不管属性存在于实例中还是原型中
+5、什么是闭包，它有什么作用？ 函数执行时形成一个新的私有作用域，保护里面的私有变量不受外界的干扰，这种机制称为闭包。
+    
+     

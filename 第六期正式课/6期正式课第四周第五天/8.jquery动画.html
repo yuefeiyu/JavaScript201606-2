@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        input{
+            width: 200px;
+            height: 40px;
+            position: absolute;
+            left:50%;
+            margin-left: -100px;
+        }
+        div{
+            width: 200px;
+            height: 400px;
+            background: red;
+            position: absolute;
+            left:50%;
+            top:40px;
+            margin-left: -100px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点击我吧"/>
+<div></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var $inp=$('input');
+    var $div=$('div');
+    $inp.click(function(){
+        //$div.css('display','none')
+        //$div.stop().hide(2000);//fast slow/时间
+        //$div.stop.slideUp();//收起来 slideDOwn
+        //$div.stop().slideToggle();
+        //$div.stop().fadeToggle(1000);
+        /*$div.stop().fadeOut(1000,function(){
+            alert('我消失了')
+        })*/
+        $div.stop().animate({opacity:0},1000,'linear',function(){
+            alert('我消失了')
+        })
+    })
+</script>
+</body>
+</html>

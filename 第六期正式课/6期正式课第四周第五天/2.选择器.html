@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="box" class="box" abc="56789">
+    <p class="p1"><span class="span1">123</span></p>
+    <p><span class="span2">123</span></p>
+    <p><span class="span3">123</span></p>
+    <p><span class="last">123</span></p>
+    <input type="text" class="input1" value="788999090" abc="987"/>
+    <input type="button" class="btn1"/>
+</div>-->
+<div>珠峰培训</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //元素的选择和过滤
+    //console.log($('div p:first span'))
+    //console.log($('div p:last span'))
+   // console.log($('div p:eq(0) span'))
+   // console.log($('div p:eq(0)'))
+    //console.log($('div input:first'))
+    //console.log($('div input:eq(0)'))
+   // console.log($('input:eq(0)'))
+    //console.log($('input:first'))
+    //console.log($('.input1'))
+   //console.log($('input').eq(1))
+    //console.log($('input[type=button]'))
+    //console.log( $('p').hasClass('p1'))
+   // console.log( $('p').filter('.p1'))//在所有的p元素中选择class名为p1的元素
+   // console.log($('div').has('span'))//在所有的div元素中选择里面包含span的div元素
+    //console.log($('p').slice(1,3))//在所有的p元素中截取索引1--索引3的；但是不包含索引3的p元素；
+    //$('div:last').html('周末快来了')
+    //取值赋值合体： 同一个方法，既可以取值也可以赋值；
+   // var $div=$('div:last');
+    //alert($div.css('height'))---取值
+    /*$div.css({//css中设置一组样式
+        background:'green',
+        width:400,
+        opacity:0.1
+    });
+    $div.css('background','pink')//css中设置一个样式*/
+    //关于属性操作：attr
+    //var $div=$('div:first');
+    //alert($div.attr('abc'))//获取属性
+    //$div.attr('abc','711')//设置属性
+    var $inp=$('input').first();
+    //alert($inp.attr('abc'))
+    //$inp.attr('value','8888888')//表单元素赋值，只能通过attr来操作；但是普通的标签可以通过HTML来操作内容；
+    $('div').click(function(){
+        //this--JS的this
+        //alert(this.html())//错的
+        //alert(this.innerHTML)
+        alert($(this)) //
+    })
+
+</script>
+</body>
+</html>

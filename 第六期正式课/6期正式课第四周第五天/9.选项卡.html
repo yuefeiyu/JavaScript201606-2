@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-size: 50px;
+            color: white;
+        }
+
+        input{
+            float: left;
+            width: 150px;
+            height: 40px;
+        }
+        .box{
+            width: 450px;
+            height: 200px;
+        }
+        .box div{
+            width: 100%;
+            height: 100%;
+            background: lightblue;
+            display: none;
+        }
+        .box div.show{
+            display: block;
+        }
+        input.bg{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box1">
+    <input type="button" value="按钮1" class="bg"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</div>
+<div class="box" id="box2">
+    <input type="button" value="按钮1" class="bg"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/tab2.js"></script>
+<script>
+   // console.dir(document.getElementById('box1')) //原生打印出来的样子
+   /* $().tab('#box1');
+    $().tab('#box2');*/
+    $('#box1').tab();
+    $('#box2').tab();
+</script>
+<!--<script>
+    //tab1是给类上扩展插件
+    $.tab('#box1');
+    $.tab('#box2');
+</script>-->
+
+<!--<script>
+    $('.box input').click(function(){
+        //当点击某个按钮的时候，让这个按钮变亮，同时让其他按钮变灭；
+        $(this).addClass('bg').siblings('input').removeClass('bg');
+        //让对应的内容框显示，同时让其他内容框隐藏
+        $('.box div').eq($(this).index()).addClass('show').siblings('div').removeClass('show');
+    })
+</script>-->
+</body>
+</html>

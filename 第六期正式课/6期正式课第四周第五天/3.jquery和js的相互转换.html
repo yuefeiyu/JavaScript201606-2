@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var $aP=$('p');
+    /*for(var i=0; i<$aP.length; i++){
+        $aP.get(i).style.background='red';
+        $aP.get(i).style.height='40px';
+    }*/
+    /*$aP.get(0).style.background='red';
+    $aP.get(0).style.height='40px';*/
+    //.............以上演示的都是Jquery如何转成JS
+    $aP.css({
+        'background':'red',//属性名的引号，可加可不加
+        height:'40px'//赋值时候的单位，可加可不加；
+    })
+</script>
+</body>
+</html>
