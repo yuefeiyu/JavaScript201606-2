@@ -134,7 +134,4 @@ Banner.prototype={
             _this.bannerTip();
         }
     }
-
-
-
 }
