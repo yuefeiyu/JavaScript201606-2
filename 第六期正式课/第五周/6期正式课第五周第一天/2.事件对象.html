@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            font-size: 100px;
+            /*overflow: auto;*/
+            cursor: pointer;
+        }
+        input{
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="input1"/>
+<!--<p style="height: 10000px;"></p>-->
+<div id="box">洒落开发</div>
+<script>
+    var oBox=document.getElementById('box');
+    var oInp=document.getElementById('input1');
+    oBox.onclick=function(e){
+        //e：事件对象
+        //type：现在触发的事件类型：
+        //console.log(e)//click
+        //console.log(window.event)
+        e=e||window.event;
+       // console.log(e.type)
+        //console.log(e.target)
+        console.log(e.srcElement)
+        //console.log(e.clientX+' , '+ e.clientY)
+
+        /*e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+        e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+ e.clientY;
+        console.log(document.documentElement.scrollTop||document.body.scrollTop)
+        console.log(e.pageX+' , '+ e.pageY)*/
+
+    }
+    oInp.onkeyup=function(e){
+        //一但用到e，必须先做e的兼容处理
+        e=e||window.event;
+        //console.log(e.target)
+        console.log(e.srcElement)
+        /*if(e.keyCode>=48 && e.keyCode<=57){
+            this.value=this.value;
+        }else{
+            this.value='请输入数字';
+        }*/
+        //alert(e.keyCode)
+    }
+</script>
+</body>
+</html>

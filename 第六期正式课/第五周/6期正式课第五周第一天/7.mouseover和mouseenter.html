@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            width: 500px;
+            height: 500px;
+            background: lightgoldenrodyellow;
+            position: relative;
+            margin:30px auto;
+        }
+        #mark{
+            display: none;
+            position: absolute;
+            left:0;
+            top:0;
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+<script>
+    var oBox=document.getElementById('box');
+    var oMark=document.getElementById('mark');
+    //当我移入mark的时候，会触发mark的ommouseover事件，冒泡到父级的onmouseover，父级的onmouseover被触发的时候就会创建新的mark；
+    /*oBox.onmouseover=function(e){
+        e=e||window.event;
+        var mark=document.createElement('div');
+        mark.id='mark';
+        this.appendChild(mark);
+        var l= e.clientX-oBox.offsetLeft+10;
+        var t= e.clientY-oBox.offsetTop+10;
+        mark.style.display='block';
+        mark.style.left=l+'px';
+        mark.style.top=t+'px';
+        mark.onmouseover=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        };
+        mark.onmouseout=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        };
+    };
+    oBox.onmousemove=function(e){
+        var mark=document.getElementById('mark');
+        e=e||window.event;
+        if(mark){
+            var l= e.clientX-oBox.offsetLeft+10;
+            var t= e.clientY-oBox.offsetTop+10;
+            mark.style.left=l+'px';
+            mark.style.top=t+'px';
+        }
+    };
+     //->依然有问题：鼠标快速移动,首先会到mark上,此时浏览器在计算mark的位置，计算完成,mark到达指定的位置，此时鼠标又重新的回到box上,触发了box的mouseover、也触发了mark的mouseout，mark的mouseout被触发，也会传播到box的mouseout上，会把mark先删除，然后在创建...
+    oBox.onmouseout=function(){
+        var mark=document.getElementById('mark');
+        if(mark){
+            this.removeChild(mark);
+        }
+    }*/
+    oBox.onmouseenter=function(e){
+        e=e||window.event;
+        var mark=document.createElement('div');
+        mark.id='mark';
+        this.appendChild(mark);
+        var l= e.clientX-oBox.offsetLeft+10;
+        var t= e.clientY-oBox.offsetTop+10;
+        mark.style.display='block';
+        mark.style.left=l+'px';
+        mark.style.top=t+'px';
+    };
+    oBox.onmousemove=function(e){
+        var mark=document.getElementById('mark');
+        e=e||window.event;
+        if(mark){
+            var l= e.clientX-oBox.offsetLeft+10;
+            var t= e.clientY-oBox.offsetTop+10;
+            mark.style.left=l+'px';
+            mark.style.top=t+'px';
+        }
+    };
+    //当我们移出mark的时候，mark的onmouseout就被触发了；他父级的onmouseout就被触发，mark就被删除；紧接着，触发了oBox的onmouseover事件，创建了一个新的mark；
+    oBox.onmouseleave=function(){
+        var mark=document.getElementById('mark');
+        if(mark){
+            this.removeChild(mark);
+        }
+    }
+</script>
+</body>
+</html>

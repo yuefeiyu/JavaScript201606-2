@@ -1,0 +1,39 @@
+1.事件
+鼠标事件: MouseEvent
+onclick onmouseover onmouseout onmouseenter onmouseleave onmousewheel
+系统事件: Event
+onload onscroll onresize...
+键盘事件 KeyboardEvent
+onkeydown onkeyup onkeypress
+表单事件：FocusEvent
+onfocus onblur....
+2.DOM0级事件:元素的私有属性
+DOM2级事件：在当前元素所属eventTarget这个类的原型上；
+解决了一个问题：在同一个元素上，触发相同的行为（事件），执行不同的方法；
+1)DOM0级事件能发生冒泡阶段
+3.事件对象
+e:存储的是触发当前元素的事件或行为的详细信息
+但是他不兼容IE6-8:window.event;
+兼容处理：e=e||window.event;
+type:事件类型
+clientX/Y:到可视区左上角的坐标位置；
+pageX/Y:到首屏左上角的坐标位置；它不兼容IE6-8；可以做如下兼容处理：
+e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+ e.clientY;
+
+e.keyCode:键盘的键码
+e.target:现在触发事件的这个元素--事件源 不兼容IE6-8：e.srcElement;
+兼容处理：e.target||e.srcElement;
+阻止默认事件的兼容处理：
+第一种兼容处理：e.preventDefault? e.preventDefault(): e.returnValue=false;
+第二种兼容处理：return false;
+
+4.运算符的优先级：
+算术运算符》比较运算符》逻辑》赋值
+5.事件流：
+想控制当前事件在事件流的哪个阶段发生：应该用DOM2级事件；（addEventListener第三个参数来控制）
+捕获阶段 目标阶段（事件源） 冒泡阶段
+捕获：从外向里依次查找元素；
+冒泡：从里向外触发元素身上的事件;当元素身上的事件click被触发的时候，如果他的父级身上有相同的事件，都会被触发；如果有绑定的方法，这些方法都会被执行；
+6.阻止冒泡的兼容处理：
+e.stopPropagation?e.stopPropagation():e.cancelBubble=true;

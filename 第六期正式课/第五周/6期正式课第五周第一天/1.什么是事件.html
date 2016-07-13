@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            font-size: 100px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box">撒打发了斯柯达法拉克经费等死啦快递劫匪绿卡解放路口大家分两大水库附近的拉开房间了看到撒酒疯拉开房间洒落开发</div>
+<input type="text" id="input1"/>
+<script>
+    var oBox=document.getElementById('box');
+    var oInp=document.getElementById('input1');
+    /*oBox.onclick=function(){
+        console.log(arguments)
+    }*/
+    /*oBox.onscroll=function(){
+        console.log(123)
+        console.log(arguments)
+    }*/
+   /* oBox.onmouseenter=function(){
+        console.log(arguments)
+    }*/
+    /*window.onload=function(e){
+        console.log(e)
+    }*/
+    /*window.onresize=function(e){
+        console.log(e)
+    }*/
+    //DOM0级事件：它属于元素身上的私有属性；
+   /* oInp.onkeydown=function(e){
+       // console.log(e)
+        console.dir(oInp)
+    }*/
+    /*oInp.onfocus=function(e){
+        console.log(e)
+    }*/
+    /*oInp.onblur=function(e){
+        console.log(e)
+    }*/
+    // var oBox={onclick:fn, onmouseover:fn,onmouseout:fn....}
+    //oBox上，onclick属于他的私有属性；onclick属于oBox这个对象的属性名；
+    //对象特点：不重名的特性；
+    /*oBox.onclick=function(){
+        alert(123)
+    }*/
+    oBox.onclick=function(){
+        console.dir(this)
+    }
+    //如果想实现：在同一个元素上，触发同一个事件，执行不同的方法；
+    //给元素的某个行为上绑定某个方法，此方法一定处于定义阶段；
+    //只有当元素的某个行为被触发，触发时会调用提前绑定好的方法；
+    function fn1(){
+        alert(123)
+    }
+    function fn2(){
+        alert(456)
+    }
+    oBox.addEventListener('click',fn1,false);
+    oBox.addEventListener('click',fn2,false);
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

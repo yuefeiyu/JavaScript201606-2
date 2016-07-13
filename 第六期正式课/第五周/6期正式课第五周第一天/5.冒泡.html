@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            padding:100px;
+            color: white;
+            font-size: 50px;
+        }
+        #outer{
+            background: red;
+        }
+        #inner{
+            background: green;
+        }
+        #center{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    outer
+    <div id="inner">
+        inner
+        <div id="center">
+            center
+        </div>
+    </div>
+</div>
+<script>
+
+    var outer=document.getElementById('outer');
+    var inner=document.getElementById('inner');
+    var center=document.getElementById('center');
+    //如果只有捕获和冒泡的话，DOM0级事件，在事件流的冒泡阶段
+    document.body.onclick=function(){
+        alert('body')
+    };
+    document.documentElement.onclick=function(){
+        alert('document')
+    };
+    outer.onclick=function(){
+        alert('outer')
+    };
+    inner.onclick=function(){
+        alert('inner')
+    };
+    center.onclick=function(e){
+        e=e||window.event;
+        //e.stopPropagation()
+        e.stopPropagation?e.stopPropagation():e.cancelBubble=true;
+        alert('center')
+    };
+    /*//useCapture:是否捕获 false-冒泡 true-捕获阶段
+    outer.addEventListener('click',function(){
+        alert('outer');
+    },false)
+    inner.addEventListener('click',function(){
+        alert('inner');
+    },false);// 捕获阶段
+    center.addEventListener('click',function(e){
+        e=e||window.event;
+        //e.stopPropagation();//支持标准浏览器
+       // e.cancelBubble=true;
+        alert('center');
+    },false)//冒泡*/
+</script>
+</body>
+</html>

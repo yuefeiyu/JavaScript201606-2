@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<textarea name="" id="t1" cols="30" rows="10" ></textarea>
+<input type="text" id="t2"/>
+<script>
+    var oT1=document.getElementById('t1');
+    var oT2=document.getElementById('t2');
+    oT2.onkeyup=function(e){
+        e=e|| window.event;
+        if(e.keyCode===13){
+            oT1.value=oT2.value;
+            oT2.value='';
+        }
+    }
+</script>
+</body>
+</html>
