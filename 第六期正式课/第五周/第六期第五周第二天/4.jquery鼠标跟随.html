@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width: 640px;
+            position: relative;
+            margin:50px auto;
+        }
+        .box img{
+            width: 150px;
+            float: left;
+            margin-left: 10px;
+        }
+        #mark{
+            width: 450px;
+            position: absolute;
+            left:0;
+            top:0;
+            display: none;
+        }
+        #mark img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="img/apple_1.jpg" realImg="img/apple_1_bigger.jpg" alt=""/>
+    <img src="img/apple_2.jpg" realImg="img/apple_2_bigger.jpg" alt=""/>
+    <img src="img/apple_3.jpg" realImg="img/apple_3_bigger.jpg" alt=""/>
+    <img src="img/apple_4.jpg" realImg="img/apple_4_bigger.jpg" alt=""/>
+    <div id="mark">
+        <img src="img/apple_1_bigger.jpg" alt=""/>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var $box=$('.box');
+    var $aImg= $box.children('img');
+    var $mark=$('#mark');
+    var $offset=$box.offset();//{left:xxx,top:xxx}
+    $aImg.mouseover(function(e){
+        //优化1：在移入的时候，可以不设置位置，只让显示；
+        //扩展：$(this)指当前触发事件的这个元素-事件源
+        /*$mark.stop().show(500).find('img').attr('src',$(this).attr('realImg'));*/
+       // console.log(e.target==this)=>true;
+        $mark.stop().show(500).find('img').attr('src',$(e.target).attr('realImg'));
+    });
+    $aImg.mousemove(function(e){
+        var l= e.clientX-$offset.left+20;
+        var t= e.clientY-$offset.top+20;
+        $mark.css({left:l,top:t});
+    })
+    $aImg.mouseout(function(){
+        $mark.stop().hide();
+    })
+</script>
+</body>
+</html>

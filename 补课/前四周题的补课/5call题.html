@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function fn1(){alert(1)};
+    function fn2(){alert(2)};
+    fn3=fn2.call;//Function.prototype.call:1)改变this这个实例中的this关键字 2）this这个实例执行
+    fn2.call(fn1);//请问输出什么结果，为什么 2
+    fn3.call.call.call(fn1);//请问输出什么结果，为什么 1
+</script>
+</body>
+</html>

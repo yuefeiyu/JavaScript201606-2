@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var count=0;
+    function fn(){
+        count++;
+
+        alert(count);
+        if(count>=10){
+            return;
+        }
+        clearTimeout(timer);
+        var timer=setTimeout(fn,1000)
+    }
+    fn()
+</script>
+</body>
+</html>

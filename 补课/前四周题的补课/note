@@ -1,0 +1,72 @@
+1.数据类型：基本数据类型和引用数据类型
+基本数据类型：string，number,boolean,null,undefined
+引用数据类型：对象，函数
+2.检测数据类型的方法
+typeof constructor instanceOf Object.prototype.toString.call()
+3. <div id=’div1’ class=’box’></div>
+    1.id
+    2.class
+    3.tagName
+    4.querySelector
+    5.querySelectorAll
+4.previousElementSibling
+5.在数组的后面追加一项:push(),ary[ary.length]=xxx; ary.splice(ary.length,0,xxx);
+6.删除数组的最后一项:pop(), ary.length--; ary.length-=1; ary.length=ary.length-1;ary.splice(ary.length-1,1); delete ary[ary.length-1](可以删掉内容，但是数组的长度不会发生改变)；
+7.克隆一份和原来一样的数组 ary.concat(); ary.slice()/ary.slice(0); ary.splice(0);
+8.ary.sort(function(a,b){return a-b});
+9.实现找到第n项到第m项(包括n和m)的内容，返回一个新的数组(原有数组不变)
+ary.slice(n-1,m);
+10.数据类型的比较
+对象==对象  比较的是地址
+对象==字符串 转成字符串
+对象==数字 数字
+对象==布尔 数字
+字符串==数字 数字
+字符串==布尔 数字
+数字==布尔 数字
+null==undefined =>true;  null===undefined =>false
+NaN==NaN 跟任何值都不想等，包括自己也不想等，返回false；
+10.sum求和
+function sum(){
+    var total=0;
+    for(var i=0; i<arguments.length; i++){
+        if(!isNaN(arguments[i])){
+            total+=Number(arguments[i])
+        }
+    }
+    return total;
+}
+11.循环绑定事件：1）自定义属性 2）闭包
+12.预解释无节操：
+1）对等号左边带var只声明不定义
+2）if条件语句中无论条件是否成立，都会进行预解释
+3）自执行函数不会进行预解释，执行到的时候声明+定义+调用同步完成
+4）return 后面的返回值不会进行预解释，但是return下面的语句虽然不执行，但会进行预解释
+5）已经声明的变量，不会进行重复声明；
+13.listToArray
+function listToArray(arg){
+    try{
+        return Array.prototype.slice.call(arg);
+    }catch(e){
+        var ary=[];
+        for(var i=0; i<arg.length; i++){
+            ary.push(arg[i])
+        }
+        return ary;
+    }
+
+}
+14jsonParse
+return 'JSON' in window?JSON.parse(str):eval('('+str+')');
+15.异步：
+1）定时器 2）事件 3）回调函数 4）ajax；
+
+
+
+
+
+
+
+
+
+

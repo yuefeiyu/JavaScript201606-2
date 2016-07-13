@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width: 600px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .box input{
+            float: left;
+            width: 150px;
+            height: 40px;
+        }
+        .box input.bg{
+            background: red;
+        }
+        .box div{
+            width: 100%;
+            height: 100%;
+            background: lightblue;
+            display: none;
+            font-size: 50px;
+        }
+        .box div.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box1">
+    <input type="button" value="按钮1" class="bg"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <input type="button" value="按钮4"/>
+
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+</div>
+<div class="box" id="box2">
+    <input type="button" value="按钮1" class="bg"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <input type="button" value="按钮4"/>
+
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+    <div>内容4</div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/tab2.js"></script>
+<script>
+    /*
+    * 关于jquery插件的封装：
+    * $.extend({}) ===> $.each(对象，callback)// 对象:jquery,元素集合这个类数组，[],{}
+    * $.fn.extend()===> $().xxx(); $('div').mouseover();
+    * */
+   // var obj={name:'zhufeng',age:9};
+    /*var aDiv=$('div');
+    var obj=[123,456,789]
+    $.each(aDiv,function(index,item){
+        console.log($(item).css('backgroundColor'))
+    })*/
+    $('#box1').tab();
+    $('#box2').tab();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 450px;
+            height: 300px;
+            background: url("img2/default.gif") center #e1e1e1 no-repeat;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<p style="height: 1000px"></p>
+<div><img realImg="img2/1.jpg" alt=""/></div>
+<div><img realImg="img2/2.jpg" alt=""/></div>
+<div><img realImg="img2/3.jpg" alt=""/></div>
+<div><img realImg="img2/4.jpg" alt=""/></div>
+<div><img realImg="img2/5.jpg" alt=""/></div>
+<script>
+    var aImg=document.getElementsByTagName('img');
+    window.onscroll=function(){
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        var clientHeight=document.documentElement.clientHeight||document.body.clientHeight;
+        for(var i=0; i<aImg.length; i++){
+            var cur=aImg[i];
+            if((cur.offsetTop+cur.offsetHeight)<(scrollTop+clientHeight)){
+                lazyImg(cur);
+            }
+        }
+    }
+    function lazyImg(img){
+        if(img.loaded){
+            return;
+        }
+        var tmpImg=new Image;
+        tmpImg.src=img.getAttribute('realImg');
+        tmpImg.onload=function(){
+            img.src=this.src;
+            tmpImg=null;
+            img.loaded=true;
+        }
+    }
+</script>
+</body>
+</html>

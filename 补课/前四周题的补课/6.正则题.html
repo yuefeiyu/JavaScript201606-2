@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * exec
+    * 在没有小分组的情况下，exec捕获到的数组有三项：
+    * 1）正则捕获到的内容
+    * 。。。。。。。
+    * 2）索引
+    * 3）原始字符串
+    * */
+    var str='54389';
+    var ary=['伍','肆','叁','捌','玖'];
+    str=str.replace(/\d/g,function($0,$1,$2){
+        return ary[$1];
+    })
+    document.write(str)
+</script>
+</body>
+</html>
