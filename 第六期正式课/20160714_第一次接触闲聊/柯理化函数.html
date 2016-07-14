@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var obj = {name: '珠峰'};
+    //    function fn(num1, num2) {
+    //
+    //    }
+    //    fn.call(obj, 10, 20);
+    //    fn.apply(obj, [10, 20]);//->不仅仅把THIS改变为OBJ,而且让FN立即执行
+    //
+    //    fn.bind(obj, 10, 20);//->只是提前的把FN中的THIS指向OBJ,FN并没有执行 "JS的预处理机制"
+
+    //    var obj = {name: "珠峰"};
+    //    function fn() {
+    //        console.log(this);
+    //    }
+    //    window.setTimeout(fn(), 1000);//->首先把fn执行,把fn执行的返回结果undefined赋值给定时器,1000ms后执行的是undefined；fn中的this->window；
+    //
+    //    window.setTimeout(fn, 1000);//->1000ms后执行的是fn；fn中的this->window；
+    //
+    //    window.setTimeout(fn.call(obj), 1000);//->首先把fn执行,把fn中的this变为obj,把fn执行的返回结果undefined赋值给定时器,1000ms后执行的是undefined；fn中的this->obj；
+    //
+    //    window.setTimeout(fn.bind(obj), 1000);//->首先把fn中的this预先处理为obj,1000ms后执行fn；fn中的this->obj；
+    //
+    //    //->如果想1000ms后执行fn,并且让里面的THIS变为obj,我们只能使用最后一种办法,但是bind在IE6~8下不兼容
+    //    window.setTimeout(function () {
+    //        fn.call(obj);
+    //    }, 1000);//->我们给定时器设置的函数是一个匿名函数,1000ms后先执行匿名函数,然后在匿名函数执行的过程中在执行fn,使用call或者apply改变this即可
+
+    //    fn.bind(obj)
+    //            =>
+    //    function () {
+    //        fn.call(obj);
+    //    }
+    //Function.prototype.bind方法实现原理:执行bind方法,会返回一个匿名函数,在匿名函数执行的过程中,我们把需要执行的函数执行,并且让函数中的this变为指定的对象
+
+
+    //    var obj = {name: "珠峰"};
+    //    function fn() {
+    //        console.log(this);
+    //    }
+
+    //    fn.bind(obj);
+    //    fn();//->this:window  说明执行bind方法并不是把fn中的this改变为obj了,fn中的this没有变
+
+    //var temp = fn.bind(obj);
+    //temp();//->this:obj  执行bind方法,我们返回的那个结果是一个新的函数,在新的函数执行的时候,会让fn也执行,再通过call/apply把fn中的this变为obj
+    //->temp=function(){ fn.call(obj); };
+
+    //->在内置类的原型上扩展方法的一种真实项目写法
+    //    ~function (pro) {
+    //        function myBind() {
+    //
+    //        }
+    //        pro.myBind = myBind;
+    //    }(Function.prototype);
+
+
+    //->柯理化函数思想:利用作用域不销毁的原理把一些后期需要使用的东西预先存储起来,后期直接拿来使用,在bind中,我们是预先把需要执行的函数和改变的this都存储起来了,后期执行的时候在改变，也可以理解为事先就把函数中的this都指定好了,这种JS的预存储或者预处理机制就是柯理化函数思想...
+
+    Function.prototype.myBind = function myBind(context) {
+        //->myBind方法中的this是我们当前需要操作的那个函数fn
+        //->context:obj我们需要把fn中的this变为谁,我们就把谁传递进来
+        var _this = this;
+        return function () {
+            _this.call(context);
+        }
+    };
+
+    var obj = {name: "珠峰"};
+    function fn() {
+        console.log(this);
+    }
+    var temp = fn.myBind(obj);
+    //temp=function(){fn.call(obj);}
+    temp();
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+珠峰培训B阶段毕业项目
+->PC端整站(在第八周及以前需要完成)
+
+  [招聘类的]
+  拉钩网：http://www.lagou.com/
+  猎聘网：http://www.liepin.com/
+
+  [电商类的]
+  京东：http://www.jd.com/
+  美丽说：http://www.meilishuo.com/
+  蘑菇街：http://www.mogujie.com/
+  天猫
+  淘宝
+  ...
+
+  [企业展示]
+  小米：http://www.mi.com/
+  百度：https://www.baidu.com/
+  猎豹：http://www.liebao.cn/ (http://m.liebao.cn/)
+
+  [微博类的]
+  QQ空间：http://user.qzone.qq.com/
+  新浪微博：http://weibo.com/
+
+  [视频类的]
+  腾讯视频：http://v.qq.com/
+  爱奇艺：http://www.iqiyi.com/
+  乐视体育：http://www.lesports.com/
+
+  上述项目大家可以参考选择，也可以选择自己喜欢的项目，但是不能太简单了
+
+->移动端简历(第九周做即可)
+
+
+->在明天18:00之前，把本组每个人员PC端项目及参考网址统计好后，发给周老师(QQ:1282347298)
+
+  第一组
+  xxx 项目名称 参考地址
+
+  要求：
+  不能使用jQuery，所有的JS操作需要用原生的JS实现；
+  网站上的部分动画，如果人家的原网站是用CSS3动画实现，你们也可以使用CSS3动画，但是动画需要兼容IE6~8(部分动画需要CSS3实现一套，JS实现一套)
+  一个项目至少两个页面:首页+(详细页/注册页/登录页)
+
+  做项目这个非常重要，现在做了遇到问题解决了，以后工作才能快速入手，尤其是我最想锻炼你们的是HTML+CSS样式
+
+
+
+预习任务:
+  ->课时117~课时120 至少看两遍(这部分内容非常的难)

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+<script charset="UTF-8" type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //->jQuery中的筛选
+    //1)children:"子集筛选" 在当前元素的所有的子元素中按照规则进行筛选
+    //2)find:"后代筛选" 在当前元素的所有子子孙孙级别的元素中,按照规则进行筛选
+    //3)filter:"同级筛选"
+    //    console.log($("body").children("div"));
+    //    console.log($("body").find("div"));
+    //    console.log($("div").filter(".cc"));//->首先获取页面中所有标签名为DIV的元素,存储在jQuery的集合中,filter是在集合中在进行二次筛选：把拥有cc样式的获取到
+
+    //->attr/prop & removeAttr/removeProp
+    //attr一般用来操作自定义的属性
+    //prop一般用来操作内置的属性
+    //    $("body").attr("trueImg");
+    //    $("body").attr("trueImg", "xxx");
+    //    $("body").attr({
+    //        cc: 1,
+    //        bb: 2
+    //    });
+    //    $("input").prop("checked");
+
+    //->动画
+    //animate
+    //show("slow") hide("fast") toggle(300)
+    //slide系列
+    //fade系列
+    //stop:结束当前正在运行的动画,从当前元素的位置开始执行下一个动画/finish:结束当前正在运行的动画,但是会让元素立马运动到第一个动画的目标位置,然后从目标位置执行下一个动画
+
+    //->操作样式
+    //css
+    //addClass、removeClass、toggleClass、hasClass
+    //width([val])、height
+    //innerWidth、innerHeight  & outerWidth、outerHeight
+    //offset
+    //position
+
+    //->动态操作DOM元素的方法
+    //before after
+    //insertBefore insertAfter  append/appendTo prepend/prependTo
+    //remove clone
+    //html val text
+
+    //->事件
+    //on off  $().on("click",function(){})
+
+    //click、keydown、keyup...  $().click(function(){})
+    //bind unbind trigger  $("a").bind("click",function(){})  $("a").trigger("click");
+    //one
+    //delegate  $(".box").delegate("click","a",function(){});
+    //-> $(".box").on("click",function(e){
+    //       if(e.target.tagName==="A"){
+    //
+    //       }
+    // });
+
+    //->jQuery的循环机制
+    //each
+
+    //->查找
+    //eq(索引)  get(索引)  $()[索引]  $().slice([start,end])
+    //prev prevAll next nextAll siblings index parent parents
+</script>
+</body>
+</html>

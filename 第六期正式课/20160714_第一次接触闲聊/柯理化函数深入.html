@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    Function.prototype.myBind = function myBind(context) {
+        if ("bind" in Function.prototype) {
+            return this.bind.apply(this, arguments);
+        }
+        var _this = this,
+                outerArg = [].slice.call(arguments, 1);
+        return function () {
+            var innerArg = [].slice.call(arguments, 0),
+                    arg = outerArg.concat(innerArg);
+            _this.apply(context, arg);
+        }
+    };
+
+
+    //    Function.prototype.myBind = function myBind(context) {
+    //        var _this = this;
+    //        //->获取预先传递进来的形参值:arguments第二个及以后的参数就是
+    //        var outerArg = Array.prototype.slice.call(arguments, 1);
+    //
+    //        return function () {
+    //            //->处理的是如果是事件绑定我们把事件对象也获取到传递给函数
+    //            var innerArg = [].slice.call(arguments, 0),
+    //                    arg = outerArg.concat(innerArg);
+    //            _this.apply(context, arg);
+    //        }
+    //    };
+
+    var obj = {name: "珠峰"};
+    function fn(num1, num2, e) {
+        console.log(this, num1, num2);
+    }
+    var temp = fn.myBind(obj, 100, 200);
+    temp();
+
+    var temp2 = fn.bind(obj, 100, 200);//->除了事先把this执指定好,而且把形参的值也预先指定好了
+    temp2();
+</script>
+</body>
+</html>

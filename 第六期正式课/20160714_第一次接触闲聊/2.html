@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--<a id="a0">0</a>
+
+<div id="div1"></div>
+<a id="a1" class="public">1</a>
+
+<p></p>
+
+<p></p>
+<a id="a2">2</a>-->
+
+<div id="box">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<div></div>
+<div></div>
+
+<script charset="UTF-8" type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //->选择器
+    //console.log($("a:gt(0):eq(1)"));
+
+    //一、在外面使用的$和jQuery是相同的
+    //    (function(){
+    //        var jQuery=function(){
+    //
+    //        };
+    //        window.jQuery = window.$ = jQuery;
+    //    })();
+    //    $===jQuery
+    //    $()  jQuery()
+
+    //->扩展:多库并存(我们先引入jQuery,此时$代表jQuery;后期我们产品需求可能还需要引入Zepto,此时$代表Zepto;那么现在$就冲突了;)
+    //    var j = jQuery.noConflict();//->jQuery提供的这个方法是为了转让对于$的使用权,只要执行这个方法,以后的$就不在等于jQuery了；我们定义的变量j就是jQuery最新的缩写,用j代替之前$；
+    //    //$();//->$ is not a function
+    //    j();
+
+    //    var j = jQuery.noConflict(true);
+    //    jQuery();//->jQuery is not a function  深度转移,我们以后连jQuery都不能用了,只能用j了
+
+    //->源码:
+    //    _$ = window.$;
+    //    jQuery.noConflict = function( deep ) {
+    //        if ( window.$ === jQuery ) {
+    //            window.$ = _$;
+    //        }
+    //        if ( deep && window.jQuery === jQuery ) {
+    //            window.jQuery = _jQuery;
+    //        }
+    //        return jQuery;
+    //    };
+
+
+    //二、什么是jQuery选择器?
+    //$("规则") 通过传递对应规则的字符串,把需要的元素都获取到,这就是表面上选择器的理解
+
+    //$() ->它其实是在让jQuery这个方法执行(jQuery本身是一个函数)
+    //    var jQuery = function( selector, context ) {
+    //        return new jQuery.fn.init( selector, context );
+    //    }
+
+    //->通过源码其实需要传递两个参数值:selector选择器类型  context上下文(默认可以不传,不传的话默认的上下文就是document)
+    //$("div") 获取整个文档中的所有DIV
+    //$("div",document.getElementById("box")) 获取#box这个盒子下的所有的DIV
+    //    console.log($("div"));//->0~5存储的是获取的DIV length:6 context:document selector:"div"
+    //    console.log($("div", document.getElementById("box"))); //->0~2存储的是获取的DIV length:3 context:div#box selector:"div"  (目前context传递的是一个原生的JS对象)
+    //    console.log($("div", $("#box")));  ////->0~2存储的是获取的DIV length:3 context:document selector:"#box div" (目前context传递的是一个jQuery对象)
+    //    //->context这个值传递的格式不一样,最后的实现原理其实是不一样的:传递一个JS对象,是真正的把context改变,获取的时候在一个上下文中获取；传递的是一个jQ对象,并没有把context改变,而是把我们传递进来的selector改变了;
+
+    //->jQuery本身是一个类,我们通过$()/jQuery()返回的结果其实都是在创建jQuery这个类的一个实例(jQuery对象) ->选择器就是在获取类的实例
+    //jQuery中提供的方法一共分为两部分:定义在类的原型上的方法,把类本身当做一个普通对象,定已在对象上的方法
+    //    jQuery.fn=jQuery.prototype={
+    //         constructor: jQuery,
+    //         css/attr/addClass...
+    //     };
+    //    $().css();
+    //把jQ作为一个普通的对象第一在自己属性上的方法
+    //    jQuery.noConflict=function(){}
+    //    $.noConflict()
+
+    //->extend:为jQ扩展方法
+    //jQuery.extend = jQuery.fn.extend = function()...
+    //$().extend  $.fn.extend :把方法扩展到jQ的原型上（写插件）
+    //    $.fn.extend({
+    //        aa:function...
+    //     });
+    //    $().aa()
+    //$.extend :把方法扩展到私有属性上（完善类库）
+    //    $.extend({
+    //        bb:function...
+    //    });
+    //    $.bb();
+
+
+    //->selector的类型可以是一个字符串、可以是一个DOM对象、可以是一个函数...
+    //$(".cc") ->选择器:通过规则获取不同的元素 jQ中的选择器是通过正则进行解析处理的
+    //$("<div>").appendTo(document.body); ->虽然也是字符串,但是这类属于动态创建HTML元素标签
+
+    //->实现DOM对象和jQ对象的转换
+    //var oDiv = document.getElementById("box");//->获取的是DOM元素对象
+    //var $oDiv = $("#box");//->获取的是jQ对象(jQ对象类似于类数组)
+    //->把DOM转换为jQ
+    //$(oDiv)
+    //->把jQ转换为DOM
+    //$oDiv[0]  $oDiv.get(0)
+
+    //->get eq slice
+    //    var $divs = $("div");
+    //    console.log($divs[0]);//->DOM原生对象
+    //    console.log($divs.get(0)); //->DOM原生对象
+    //    console.log($divs.eq(0));//->jQ对象
+    //    console.log($divs.slice(0, 1));//->jQ对象
+
+    //->selector:函数 $(function(){}); ->$(document).ready(function(){}) 当页面中的HTML结构加载完成才会触发事件的执行
+
+
+    //->jQuery中的each
+    //$.fn.each ->用来遍历选择器得到的jQ类数组集合中的每一项的
+    //    $("div").each(function (index, item) {
+    //        //->index：当前项的索引
+    //        //->item：当前项(JS对象)  =>$(item)
+    //        //->this：item  =>$(this)
+    //    });
+    //$.each ->用来遍历数组、对象、类数组中的每一项的
+    //    $.each([12, 23, 34], function (index, item) {
+    //
+    //    });
+    //    $.each({name: '珠峰', age: 7}, function (key, value) {
+    //
+    //    });
+    //jQ自带循环机制
+    //    $("div").css("width", "100");//->虽然在这里我们自己并没有看到遍历DIV，但是jQ内置的机制是把集合中每一个DIV的WIDTH值都修改为100了
+</script>
+</body>
+</html>
