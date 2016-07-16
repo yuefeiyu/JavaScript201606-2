@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    var obj={onclick:function(){alert(2)},age:9};
+    /*oDiv.onclick=function(){
+        alert(1)
+    };
+    oDiv.onclick=function(){
+        alert(2)
+    };*/
+    /*oDiv.addEventListener('click',function(){
+        alert(1)
+    },false);
+    oDiv.addEventListener('click',function(){
+        alert(2)
+    },false);*/
+    //alert('DOMContentLoaded' in oDiv)
+    function fn1(){
+        alert(1)
+    }
+    function fn2(){
+        alert(2)
+    }
+    /*document.addEventListener('DOMContentLoaded',fn1,false);
+    document.removeEventListener('DOMContentLoaded',fn1,false);*/
+    //alert('addEventListener' in oDiv)//判断是否属于高级浏览器
+    oDiv.attachEvent('onclick',fn1)//有两个参数：第一个参数一定要加on,第二个参数：绑定的方法；
+    //oDiv.detachEvent('onclick',fn1);
+    oDiv.attachEvent('onclick',fn2)
+</script>
+</body>
+</html>

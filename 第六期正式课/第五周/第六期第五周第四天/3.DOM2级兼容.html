@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="event2.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    function fn1(e){console.log(e.clientX)}
+    function fn2(){console.log(2)}
+    function fn3(){console.log(3)}
+    function fn4(){console.log(4)}
+    function fn5(){console.log(5)}
+    function fn6(){console.log(6)}
+    function fn7(){console.log(7)}
+    function fn8(){console.log(8)}
+    function fn9(){console.log(9)}
+    function fn10(){console.log(10)}
+    function fn11(){console.log(11)}
+    /*bind(oDiv,'onclick',function (e){
+     //this==oDiv
+     console.log()
+     })
+
+     bind(oDiv,'click',fn1)
+     bind(oDiv,'click',fn1)
+     bind(oDiv,'click',fn2)
+     bind(oDiv,'click',fn3)
+     unbind(oDiv,'click',fn3)*/
+    on(oDiv,'click',fn9);
+    on(oDiv,'click',fn1);
+    on(oDiv,'click',fn2);
+    on(oDiv,'click',fn3);
+    on(oDiv,'click',fn4);
+    on(oDiv,'click',fn5);
+    on(oDiv,'click',fn6);
+    on(oDiv,'click',fn7);
+    on(oDiv,'click',fn10);
+    on(oDiv,'click',fn11);
+    on(oDiv,'click',fn8);
+    off(oDiv,'click',fn5);
+    off(oDiv,'click',fn2);
+    off(oDiv,'click',fn1);
+
+
+</script>
+</body>
+</html>
