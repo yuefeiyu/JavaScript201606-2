@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    window.onload=function(){
+        alert('onload')
+    };
+    domReady(function(){
+        alert('domReady')
+    })
+    //domReady:当DOM结构加载完成时，开始执行JS代码；
+    function domReady(fn){
+        //标准浏览器下：addEventListener DOMContentLoaded
+        if('addEventListener' in document){
+            document.addEventListener('DOMContentLoaded',function(){
+                fn && fn();
+            },false);
+        }else{//IE浏览器的兼容处理；
+            document.onreadystatechange=function(){//当页面加载状态改变时执行此方法
+                if(document.readyState==='complete'){//说明DOM结构已经加载完成
+                    fn&&fn();
+                };
+                /*
+                * readyState总共有四种状态
+                * uninitialized - 还未开始载入
+                * loading - 载入中
+                * interactive - 已加载，文档与用户可以开始交互
+                * complete - 载入完成
+                * */
+
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

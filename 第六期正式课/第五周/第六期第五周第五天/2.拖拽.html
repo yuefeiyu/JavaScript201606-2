@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: red;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<p>鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置</p>
+<p>鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置</p>
+<p>鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置</p>
+<p>鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置</p>
+<p>鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置</p>
+<p>鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置</p>
+ <div id="div"></div>
+ <script>
+     var oDiv=document.getElementById('div');
+     oDiv.onmousedown=function(e){
+         //鼠标按下后，需要记录：鼠标按下点到oDiv左边和上边的位置
+         e=e||window.event;
+         var disX= e.clientX-this.offsetLeft;
+         var disY= e.clientY-this.offsetTop;
+         document.onmousemove=function(e){
+             //求oDiv距离body的left和top
+             e=e||window.event;
+             var l= e.clientX-disX;
+             var t= e.clientY-disY;
+             var maxW=(document.documentElement.clientWidth||document.body.clientWidth)-oDiv.offsetWidth;
+             var maxH=(document.documentElement.clientHeight||document.body.clientHeight)-oDiv.offsetHeight;
+             if(l<0){
+                 l=0;
+             }else if(l>=maxW){//如果想实现磁性吸附的效果，配合数字
+                 l=maxW;
+             }
+             if(t<=0){
+                 t=0;
+             }else if(t>=maxH){
+                 t=maxH;
+             }
+             oDiv.style.left=l+'px';
+             oDiv.style.top=t+'px';
+         };
+         document.onmouseup=function(){
+             document.onmousemove=null;
+             document.onmouseup=null;
+             //鼠标抬起的时候，释放焦点
+             oDiv.releaseCapture&&oDiv.releaseCapture();
+         };
+         //鼠标按下的时候，聚集焦点
+         oDiv.setCapture && oDiv.setCapture();
+         //阻止默认事件；
+         return false;//e.preventDefault?e.preventDefault():returnValue=false;
+     }
+ </script>
+</body>
+</html>

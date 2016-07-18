@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<p>誓死守卫南海，虽远必诛！誓死守卫南海，虽远必诛！</p>
+<div class="box"></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $(function(){
+        var $box=$('.box');
+        $box.mousedown(function(e){
+            var disX= e.clientX-this.offsetLeft;
+            var disY= e.clientY-this.offsetTop;
+            $(document).on('mousemove.move',function(e){
+                var l= e.clientX-disX;
+                var t= e.clientY-disY;
+                if(l<=0){
+                    l=0;
+                }else if(l>=$(document).width()-$box.width()){
+                    l=$(document).width()-$box.width();
+                }
+                if(t<=0){
+                    t=0;
+                }else if(t>=$(document).height()-$box.height()){
+                    t=$(document).height()-$box.height();
+                }
+                $box.css('left',l);
+                $box.css('top',t);
+            });
+            $(document).on('mouseup.move',function(){
+                $(document).off('.move');
+                $box[0].releaseCapture&& $box[0].releaseCapture();
+            });
+            $box[0].setCapture&&$box[0].setCapture();
+            return false;
+        })
+    })
+</script>
+</body>
+</html>
