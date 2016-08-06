@@ -1,0 +1,72 @@
+CSS3:
+1、CSS3的选择器
+2、CSS3新增加的一些常用属性:border-radius、box-shadow、text-shadow
+3、CSS3对于背景的变革(background):
+   ->background:linear-gradient(线性渐变) / radial-gradient(径向渐变)
+   ->background-size:10px 10px / 50% 50% / cover ...
+   ->background-attachment:fixed (视觉差)
+   ->background-origin:设置背景图片起点的位置 border-box / padding-box / content-box
+   ->background-clip:背景图片的裁切 border-box / padding-box / content-box
+   ->图片滤镜filter的高级处理
+
+4、CSS3变形(transform)
+   ->translate:位移
+     transform:translate3D(0, 0, 0) / translate(0,0) / translateX(0) / translateY(0) / translateZ(0)
+
+   ->rotate:旋转
+     transform:rotate(45deg) <=> rotateZ(45deg) / rotateX(0deg) / rotateY(0deg)
+
+   ->scale:缩放
+     transform:scale(1.5)
+
+   ->skew:倾斜
+     transform:skew(15deg)
+
+   ->matrix:矩阵
+
+   transform:skew(15deg) scale(0.5) rotate(45deg);
+
+5、动画
+   ->过渡动画
+   transition:[property一般使用的是all] [duration] [timing-function包含linear、ease-in、ease-out...] [delay没有延迟写0s]
+
+   ->帧动画
+   animation:[name] [duration] [timing-function] [delay] [iteration-count无限次使用infinite] [fill-mode动画完成后停留状态等both...]
+   @keyframes [name]{
+      0%{}
+      50%{}
+      100%{}
+   }
+
+6、CSS3新盒子模型
+   ->box-sizing
+   ->FlexBox
+   ->columns
+
+7、媒体查询  @media all and (max-width:640px){}
+
+8、@font-face导入字体库/字体包
+
+
+HTML5:
+1、新增加的构建页面语义化结构标签
+  header、footer、article、section、nav、figure... (HTML5.min.js)
+
+2、对于传统的表单元素进行完善
+  ->progress、dataList...
+  ->给input表单元素新增加很多的类型：search、url、email、tel、number、range、date、time...
+  ->placeholder
+  ->移动端没有keyup、keydown事件，需要使用input事件统一代替
+  ->新增加了最新的CSS和JS表单验证
+
+3、audio、video
+
+4、canvas 提供使用代码来绘制图像的
+
+5、一些新兴的API
+   ->获取地理位置的(获取用户的经纬度，这样的话就可以调取第三方的地图(百度\腾讯\高德))
+   ->本地存储webStorage
+   ->离线存储
+   ->web socket / web works
+
+

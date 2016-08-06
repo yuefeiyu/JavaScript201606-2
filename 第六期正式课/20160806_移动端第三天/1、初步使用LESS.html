@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <!--1、导入需要编译的LESS文件 rel="stylesheet/less" -->
+    <link charset="utf-8" type="text/css" rel="stylesheet/less" href="less/index.less"/>
+</head>
+<body>
+<div class="box">
+
+</div>
+
+<!--2、在引入之前做一些调试的配置-->
+<script charset="utf-8" type="text/javascript">
+    var less = {
+        env: "development",//->设定当前的模式为开发模式
+        poll: 1000//->设置监视模式下多长时间监视一次
+    };
+</script>
+<!--3、引入LESS.JS-->
+<script charset="utf-8" type="text/javascript" src="js/less-2.5.3.min.js"></script>
+<!--4、开启监视模式-->
+<script charset="utf-8" type="text/javascript">
+    less.watch();
+</script>
+</body>
+</html>
