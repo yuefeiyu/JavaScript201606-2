@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>缩放式布局</title>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <style type="text/css">
+        /*REM是相对的单位:当前元素相对于页面的根元素"HTML元素的fontSize设定的值"*/
+        html {
+            font-size: 100px; /*->让 1REM = 100PX */
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #EEE;
+            overflow-x: hidden;
+        }
+
+        .main {
+            margin: 0 auto;
+            font-size: .28rem;
+        }
+
+        .nav {
+            padding-top: .2rem;
+            background: #FFF;
+        }
+
+        .nav:after {
+            display: block;
+            height: 0;
+            content: "";
+            clear: both;
+            zoom: 1;
+        }
+
+        .nav li {
+            float: left;
+            margin-bottom: .2rem;
+            width: 25%;
+            height: 1.36rem;
+        }
+
+        .nav li span {
+            display: block;
+        }
+
+        .nav li span:nth-child(1) {
+            margin: 0 auto .12rem;
+            width: .8rem;
+            height: .8rem;
+            background: lightblue;
+            border-radius: .1rem;
+        }
+
+        .nav li span:nth-child(2) {
+            line-height: .44rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section class="main" id="main">
+    <ul class="nav">
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+        <li>
+            <span></span>
+            <span>京东超市</span>
+        </li>
+    </ul>
+</section>
+
+<script type="text/javascript">
+    ~function (desW) {
+        //->DESW:设计稿的宽度 WINW:当前屏幕的宽度
+        var winW = document.documentElement.clientWidth,
+                n = winW / desW,
+                oMain = document.getElementById("main");
+
+        //->如果当前屏幕的宽度已经超过设计稿宽度了,我们让其在中间显示,两边留白即可
+        if (winW > desW) {
+            oMain.style.width = desW + "px";
+            return;
+        }
+
+        //->按照当前屏幕和设计稿的宽高比例改变HTML的font-size值(也就是REM和PX之间的转换比率)
+        document.documentElement.style.fontSize = n * 100 + "px";
+    }(750);
+</script>
+</body>
+</html>
