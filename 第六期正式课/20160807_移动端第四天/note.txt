@@ -1,0 +1,61 @@
+  在移动端开发过程中,如果是PC和移动端使用不同的项目,那么UI设计师会给我们提供移动端的设计稿(PSD)
+  640 * 960 (iphone4)
+  640 * 1136 (iphone5)
+  750 * 1334 (iphone6)
+  其实都在在苹果手机原来的尺寸基础上放大2倍的，为啥呢?
+
+  因为苹果的手机都是2倍高清屏幕,我们在手机上看到的320*100的图片实际上是640*200的图片呈现出来的,这样的话我们需要保证我们的素材图片在640*200之上才不会被拉伸变形或者变模糊;对于比设计稿还要大的手机或者手机放大二倍比设计稿要要大的,某些图片会模糊,此时我们需要与设计师沟通,让其准备对应的大图
+
+  /*  我们有了两张图片:
+      bg1.png(640*200)
+      bg2.png(1280*400)
+  */
+
+  .banner {
+      width: 100%;
+      height: 100px;
+      background: url("bg1.png") no-repeat;
+      background-size: 100% 100%;
+  }
+
+  @media all and (min-width: 321px) and (device-pixel-ratio: 2) {
+      .banner {
+          background: url("bg2.png") no-repeat;
+          background-size: 100% 100%;
+      }
+  }
+
+  @media all and (min-width: 641px) and (device-pixel-ratio: 1) {
+      .banner {
+          background: url("bg2.png") no-repeat;
+          background-size: 100% 100%;
+      }
+  }
+
+viewport:视口,用来设置浏览器对页面的渲染参数配置
+  ->只要你想让HTML页面在移动端访问的时候正常展示,必须要加viewport
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  width=device-width:告诉浏览器,当前设备有多宽,浏览器就需要按照多宽来渲染页面;如果不设置这个值的话,浏览器默认是按照980px的宽度来渲染HTML页面的;
+  user-scalable=no:禁止用户手动缩放(这个缩放是浏览器的默认行为)
+  initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0:设置屏幕的渲染比例
+
+
+响应式布局
+1、流式布局法
+  拿到UI设计稿之后开始布局:
+  ->外层盒子的宽度不要设置固定的值，而是采用百分比的宽度值(换句话来说:如果当前元素的宽度值是随着手机的宽度来改变的,我们需要使用百分比布局)
+  ->字体大小、颜色、高度、margin、padding...严格按照设计稿中提供的尺寸来进行布局,也就是设定的值是写死的(元素的样式属性值=设计稿中测量出来的值/2) (设计稿中提供的尺寸值都是在原来手机屏幕真实值的基础上放大二倍来做的,所以在布局的时候我们需要缩小回来才可以)
+  ->使用媒体查询@media对于不合适的地方进行微调整
+
+  一般应用于PC端和移动端共用一套项目的时候,使用流式布局法+@MEDIA可以很好的进行解决
+
+2、缩放式布局
+  transform:scale(xxx)
+
+  UI:750*1334 (375*667)
+  我们布局的时候严格的按照UI设计稿的尺寸来做(设计稿中的尺寸是多少我们就写多少->流式布局法是设计稿中是多少我们布局的时候都除以2)
+
+@media媒体查询
+  ->媒体设备:all、screen、print...
+  ->媒体条件
+
