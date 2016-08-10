@@ -1,0 +1,42 @@
+@url: "../img";
+@c1: #F4F4F4;
+@c2: #555;
+@c3: #FFF;
+@c4: #346AFF;
+
+@conW: 1040px;
+
+.linkPub {
+  display: block;
+  color: @c2;
+  text-decoration: none;
+}
+
+.font(@c:@c2;@s:12px;@b:normal) {
+  color: @c;
+  font-size: @s;
+  font-weight: @b;
+}
+
+.pos(@p:absolute;@t:auto;@r:auto;@b:auto;@l:auto;@z:1) {
+  position: @p;
+  top: @t;
+  right: @r;
+  bottom: @b;
+  left: @l;
+  z-index: @z;
+}
+
+.opacity(@v:1) {
+  @temp: @v*100;
+  opacity: @v;
+  filter: alpha(opacity=@temp);
+}
+
+.transition(@property:all;@duration:1s;@time-function:linear;@delay:0s) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}

@@ -1,0 +1,224 @@
+/*--导入PUBLIC.LESS中的代码进行使用,但是并不把里面的代码进行编译--*/
+@import (reference) "public";
+
+html, body {
+  width: 100%;
+  height: 100%;
+  color: @c2;
+  background: @c1;
+  overflow: hidden;
+}
+
+/*--我们在写A初始样式的时候不要把它及其伪类一起写,这样在IE低版本浏览器中识别不了--*/
+a {
+  .linkPub;
+}
+
+a:hover, a:active, a:visited, a:target {
+  .linkPub;
+}
+
+/*---HEADER START---*/
+.header {
+  height: 63px;
+  background: @c3;
+  border-bottom: 1px solid #DDD;
+
+  .con {
+    @temp: unit(unit(@conW)-20, px);
+    margin: 0 auto;
+    padding: 0 10px;
+    width: @temp;
+    height: 100%;
+
+    /*--LOGO--*/
+    .logo {
+      float: left;
+      margin-right: 60px;
+      width: 160px;
+      height: 100%;
+      font-size: 0;
+
+      a {
+        width: 100%;
+        height: 100%;
+        background: url("@{url}/kbs-logo.png") no-repeat left center;
+      }
+    }
+
+    /*--NAV--*/
+    .nav {
+      position: relative;
+      float: left;
+      height: 100%;
+
+      .liveQQ {
+        .pos(@t:0;@r:-63px);
+        width: 63px;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      li {
+        position: relative;
+        float: left;
+
+        &.olympics {
+          a {
+            width: 130px;
+            background: url("@{url}/olympic_tab.png") no-repeat center center;
+            background-size: 116px 24px;
+          }
+        }
+
+        &.bg {
+          a {
+            color: @c3;
+            background: @c4;
+          }
+        }
+
+        &.DL {
+          &:hover {
+            .downLoad, .downLoadLayout {
+              padding-top: 18px;
+              padding-bottom: 18px;
+              height: 133px;
+            }
+          }
+        }
+
+        a {
+          width: 90px;
+          height: 55px;
+          line-height: 55px;
+          text-align: center;
+          border: 4px solid transparent;
+          border-left: none;
+          border-right: none;
+          .font(@s:16px;@b:700);
+
+          &:hover {
+            border-top-color: @c4;
+          }
+        }
+      }
+    }
+
+    /*--LOGIN--*/
+    .login {
+      float: right;
+      margin-top: unit((63-28)/2, px);
+      width: 46px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      color: @c3;
+      background: @c4;
+      border-radius: 3px;
+
+      &:hover {
+        background: darken(@c4, 10%);
+      }
+    }
+  }
+}
+
+/*NAV DOWN LOAD*/
+.downLoad {
+  @temp: unit(-((14*2+93)-90)/2, px);
+  .pos(@t:63px;@l:@temp;@z:10);
+  padding: 0 14px; /*18*/
+  width: 93px;
+  height: 0; /*133*/
+  overflow: hidden;
+  /*--设置过渡动画--*/
+  .transition(@duration: 0.2s);
+
+  img {
+    width: 100%;
+    height: 93px;
+  }
+
+  p {
+    .font(@s:14px);
+    line-height: 20px;
+    text-align: center;
+  }
+}
+
+.downLoadLayout:extend(.downLoad) {
+  background: @c3;
+  z-index: 9;
+  .opacity(0.5);
+}
+
+/*---CONTENT START---*/
+.content {
+  margin: 20px auto;
+  width: @conW;
+}
+
+/*MENU*/
+.menu {
+  width: 198px;
+  background: @c3;
+  border: 1px solid #EEE;
+  overflow: hidden;
+
+  li {
+    .pub() {
+      border-left-color: @c4;
+      color: lighten(@c4, 5%);
+      background: lighten(@c4, 37%);
+    }
+
+    &.bg {
+      a {
+        .pub;
+        i {
+          display: block;
+        }
+      }
+    }
+
+    a {
+      position: relative;
+      padding-left: 24px;
+      height: 50px;
+      line-height: 50px;
+      border-left: 5px solid transparent;
+      .font(@s:16px);
+
+      i {
+        display: none;
+        .pos(@r:10px;@t:17px);
+        width: 16px;
+        height: 16px;
+
+        .mark {
+          .pos(@t:2px;@l:5px;@z:9);
+          width: 0;
+          height: 0;
+          font-size: 0;
+          border: 6px solid transparent;
+          border-left-color: @c4;
+
+          &.over {
+            .pos(@t:2px;@l:3px;@z:10);
+            border-left-color: lighten(@c4, 37%);
+          }
+        }
+      }
+
+      &:hover {
+        .pub;
+      }
+
+    }
+
+  }
+}

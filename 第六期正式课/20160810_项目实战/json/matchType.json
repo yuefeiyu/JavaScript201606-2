@@ -1,0 +1,72 @@
+[
+  {
+    "name": "奥运",
+    "hash": "olympics",
+    "columnId": 100009
+  },
+  {
+    "name": "NBA",
+    "hash": "nba",
+    "columnId": 100000
+  },
+  {
+    "name": "欧洲杯",
+    "hash": "ec",
+    "columnId": 3
+  },
+  {
+    "name": "中超",
+    "hash": "csl",
+    "columnId": 208
+  },
+  {
+    "name": "亚冠",
+    "hash": "afc",
+    "columnId": 605
+  },
+  {
+    "name": "欧冠",
+    "hash": "ucl",
+    "columnId": 5
+  },
+  {
+    "name": "英超",
+    "hash": "pl",
+    "columnId": 8
+  },
+  {
+    "name": "西甲",
+    "hash": "laliga",
+    "columnId": 23
+  },
+  {
+    "name": "意甲",
+    "hash": "seriea",
+    "columnId": 21
+  },
+  {
+    "name": "德甲",
+    "hash": "bundesliga",
+    "columnId": 22
+  },
+  {
+    "name": "法甲",
+    "hash": "l1",
+    "columnId": 24
+  },
+  {
+    "name": "cba",
+    "hash": "cba",
+    "columnId": 100008
+  },
+  {
+    "name": "综合",
+    "hash": "others",
+    "columnId": 100002
+  },
+  {
+    "name": "NFL",
+    "hash": "nfl",
+    "columnId": 100005
+  }
+]
