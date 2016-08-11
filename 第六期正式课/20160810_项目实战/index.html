@@ -53,6 +53,34 @@
         </ul>
     </div>
 
+    <!--RIGHT-->
+    <div class="contentRight">
+        <!--calendar-->
+        <div class="calendar">
+            <a href="javascript:;" class="btnLeft">
+                <span class="over"></span>
+                <span></span>
+            </a>
+
+            <div class="wrapper">
+                <ul class="slide">
+
+                </ul>
+            </div>
+
+            <a href="javascript:;" class="btnRight">
+                <span class="over"></span>
+                <span></span>
+            </a>
+        </div>
+
+        <!--match-->
+        <div class="match">
+            <div class="con">
+
+            </div>
+        </div>
+    </div>
 </section>
 
 <!--EJS模板引擎和需要渲染的模板-->
@@ -61,7 +89,7 @@
     <%for(var i=0;i<data.length;i++){%>
     <%var cur=data[i];%>
     <li columnId="<%=cur.columnId%>" hash="<%=cur.hash%>">
-        <a href="javascript:;">
+        <a href="#<%=cur.hash%>">
             <span><%=cur.name%></span>
             <i>
                 <span class="mark over"></span>
@@ -69,6 +97,32 @@
             </i>
         </a>
     </li>
+    <%}%>
+</script>
+<script charset="utf-8" type="text/template" id="calendarTemplate">
+    <%if(calendarData && calendarData.length>0){%>
+    <%for(var i=0;i<calendarData.length;i++){%>
+    <%var cur=calendarData[i];%>
+    <li date="<%=cur.date%>">
+        <a href="javascript:;">
+            <span class="week"><%=cur.weekday%></span>
+            <span><%=cur.date.formatTime('{1}-{2}')%></span>
+        </a>
+    </li>
+    <%}%>
+    <%}%>
+</script>
+<script charset="utf-8" type="text/template" id="matchTemplate">
+    <%for(var key in data){%>
+    <%var ary=data[key];%>
+    <div class="matchInfo" date="<%=key%>">
+        <h2><%=key.formatTime('{1}月{2}日')%></h2>
+        <ul>
+            <%for(var i=0;i<ary.length;i++){%>
+            <li></li>
+            <%}%>
+        </ul>
+    </div>
     <%}%>
 </script>
 

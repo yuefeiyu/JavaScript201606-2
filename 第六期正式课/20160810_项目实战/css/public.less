@@ -1,8 +1,12 @@
 @url: "../img";
 @c1: #F4F4F4;
 @c2: #555;
+@c2-1: lighten(@c2, 35%);
 @c3: #FFF;
 @c4: #346AFF;
+@c4-1: lighten(@c4, 5%);
+@c4-2: lighten(@c4, 37%);
+@c5: #EEE;
 
 @conW: 1040px;
 
@@ -39,4 +43,11 @@
   -ms-transition: @arguments;
   -o-transition: @arguments;
   transition: @arguments;
+}
+
+.arrow(@v:5px) {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: @v solid transparent;
 }
