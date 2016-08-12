@@ -164,16 +164,18 @@ a:hover, a:active, a:visited, a:target {
 
 /*MENU*/
 .menu {
+  position: relative;
+  float: left;
   width: 198px;
   background: @c3;
-  border: 1px solid #EEE;
+  border: 1px solid @c5;
   overflow: hidden;
 
   li {
     .pub() {
       border-left-color: @c4;
-      color: lighten(@c4, 5%);
-      background: lighten(@c4, 37%);
+      color: @c4-1;
+      background: @c4-2;
     }
 
     &.bg {
@@ -220,5 +222,126 @@ a:hover, a:active, a:visited, a:target {
 
     }
 
+  }
+}
+
+/*RIGHT*/
+.contentRight {
+  float: right;
+  width: 820px;
+  height: 100%;
+}
+
+/*CALENDAR*/
+.calendar {
+  height: 80px;
+  background: @c3;
+  border: 1px solid @c5;
+
+  .btnLeft {
+    position: relative;
+    float: left;
+    width: 24px;
+    height: 100%;
+
+    span {
+      .pos(@t:50%;@l:-1.5px;@z:9;);
+      .arrow(@v: 9px);
+      margin-top: -9px;
+      border-right-color: #999;
+
+      &.over {
+        .pos(@t:50%;@l:3px;@z:10;);
+        border-right-color: @c3;
+      }
+    }
+  }
+
+  .btnRight:extend(.calendar .btnLeft) {
+    span {
+      .pos(@t:50%;@r:-1.5px;@z:9;);
+      .arrow(@v: 9px);
+      margin-top: -9px;
+      border-left-color: #999;
+
+      &.over {
+        .pos(@t:50%;@r:2px;@z:10;);
+        border-left-color: @c3;
+      }
+    }
+  }
+
+  .wrapper:extend(.calendar .btnLeft) {
+    margin: 5px 0;
+    width: 770px;
+    height: 70px;
+    overflow: hidden;
+    .slide {
+      .pos(@t:0;@l:0;@z:10);
+      li {
+        float: left;
+
+        .hover() {
+          background: @c4-2;
+          span {
+            color: @c4-1;
+            &.week {
+              color: @c4-1;
+            }
+          }
+        }
+
+        &.bg {
+          a {
+            .hover();
+          }
+        }
+
+        a {
+          padding-top: 10px;
+          width: 110px;
+          height: 60px;
+          span {
+            display: block;
+            line-height: 27px;
+            text-align: center;
+            .font(@s: 16px;);
+            &.week {
+              color: @c2-1;
+            }
+          }
+          &:hover {
+            .hover();
+          }
+        }
+      }
+    }
+  }
+}
+
+/*MATCH*/
+.match {
+  position: relative;
+  overflow: hidden;
+}
+
+.matchInfo {
+  margin-top: 15px;
+  border: 1px solid @c5;
+  background: @c3;
+
+  h2 {
+    padding-left: 15px;
+    line-height: 40px;
+    .font(@s:16px;@b:700);
+  }
+
+  li {
+    height: 58px;
+    border-top: 1px solid @c5;
+
+    &:hover {
+      background: lighten(@c5, 5%);
+    }
   }
 }
