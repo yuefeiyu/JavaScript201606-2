@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>珠峰培训轮播图</title>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/banner.css"/>
+</head>
+<body>
+<section class="main">
+    <div class="banner">
+        <div class="wrapper">
+
+        </div>
+        <ul class="tip">
+
+        </ul>
+    </div>
+</section>
+
+<!--EJS TEMPLATE-->
+<script charset="utf-8" type="text/javascript" src="js/ejs.min.js"></script>
+<script charset="utf-8" type="text/template" id="banner-slide">
+    <%data.forEach(function(curData,index){%>
+    <div class="slide">
+        <img data-src="<%=curData.imgSrc%>" alt="<%=curData.title%>"/>
+    </div>
+    <%});%>
+</script>
+<script charset="utf-8" type="text/template" id="banner-tip">
+    <%for(var i=0;i<total;i++){%>
+    <%if(i===0){%>
+    <li class="bg"></li>
+    <%}else{%>
+    <li></li>
+    <%}%>
+    <%}%>
+</script>
+
+
+<script charset="utf-8" type="text/javascript" src="js/zepto.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/banner.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>珠峰培训</title>
+    <link type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #EEE;
+            overflow: hidden;
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+
+            width: 100px;
+            height: 100px;
+            background: green;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!--
+  1、移动端大部分手机都不支持文本框的keyup/keydown事件(移动端使用的是虚拟的键盘),在移动端我们使用 input 事件来代替
+
+  2、移动端是可以使用click事件的,但是和PC端不一样,移动端是严格区分单击、双击、长按的,移动端使用click事件会引发300ms的延迟:当第一次点击完成,浏览器会在300ms内监听是否还有第二次的点击,如果有第二次的点击属于双击,不属于click了；长按是在750ms内判断手指是否离开屏幕；
+
+  3、手指在移动端移动的距离小于30px，我们认为是点击而不是滑动；超过30px才认为是滑动；
+
+  4、在移动端的所有的操作都是靠一些事件模型模拟出来的：
+    单手指的操作：点击、单击、双击、长按、上滑、下滑、左滑、右滑、滑...  ->Touch:touchstart、touchmove、touchend、touchcancle
+    多手指操作: 缩放、旋转...  ->Gesture
+
+  5、移动端常用的事件库
+    fastclick.js ->解决click的300ms延迟
+
+    touch.js(百度) / hammer.js  ->移动端经常使用的手势事件库,里面包含了我们常用到的移动端的操作  =>http://touch.code.baidu.com/
+
+    Zepto.js ->移动端的小型jQuery,PC端我们使用的项目类库是jQuery,那么移动端使用的项目类库应该使用Zepto
+
+    Zepto的使用语法和jQuery非常的相似,但是体积比jQuery小很多
+     ->Zepto没有处理IE低版本的兼容
+     ->Zepto中对于选择器、DOM操作方法等相对于jQuery来说少了很多、知识把一些最常用的实现了，举例：jQuery中的动画方法有 show hide toggle fadeIn fadeOut slideDown animate... 但是在Zepto中只有animate
+
+   Zepto更适合移动端开发
+     ->Zepto支持使用JS设置CSS3动画(jQuery不支持)
+     ->Zepto专门提供了移动端特殊的事件操作 tap、singleTap、doubleTap、longTap、swipe、swipeUp、swipeDown、swipeLeft、swipeRight(jQuery没有)
+-->
+<div class="box" id="box"></div>
+
+<script type="text/javascript" src="js/fastclick.min.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+    var $box = $(".box");
+    $box.singleTap(function (e) {
+        $(this).css("background", "red");
+    }).doubleTap(function (e) {
+        $(this).css("background", "orange");
+    }).longTap(function (e) {
+        $(this).css("background", "black");
+    }).swipe(function (e) {
+        $(this).animate({
+            rotate: "360deg"
+        }, 1000, "linear", function () {
+            $(this).css("transform", "rotate(0deg)");
+        });
+    });
+    /*
+     fastclick:把我们项目中使用的click事件替换成touch事件,从而解决300ms延迟问题
+     */
+    //    FastClick.attach(document.body);//->把BODY中所有的CLICK都替换成TOUCH
+    //
+    //    var box = document.getElementById("box");
+    //    box.addEventListener("click", function () {
+    //
+    //    }, false);
+
+
+    //    box.addEventListener("touchstart", function (ev) {
+    //        //console.dir(ev);//->TouchEvent:触摸事件对象
+    //        var point = ev.touches[0];
+    //        this["strX"] = point.clientX;
+    //        this["strY"] = point.clientY;
+    //    }, false);
+    //
+    //    box.addEventListener("touchmove", function (ev) {
+    //        //console.dir(ev);//->TouchEvent:触摸事件对象
+    //        var point = ev.touches[0];
+    //        this["changeX"] = point.clientX - this["strX"];
+    //        this["changeY"] = point.clientY - this["strY"];
+    //        if (Math.abs(this["changeX"]) > 30 || Math.abs(this["changeY"]) > 30) {
+    //            this["isSwipe"] = true;
+    //        }
+    //    }, false);
+    //
+    //    box.addEventListener("touchend", function (ev) {
+    //        //console.dir(ev);//->TouchEvent:触摸事件对象 changeTouches 中存储着坐标 touches集合是空的,因为手机已经离开了屏幕
+    //        var flag = this["isSwipe"];
+    //        flag ? console.log("滑动") : console.log("点击");
+    //    }, false);
+</script>
+</body>
+</html>

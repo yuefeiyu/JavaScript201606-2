@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>珠峰培训-移动端事件</title>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <style type="text/css">
+        input {
+            outline: none;
+        }
+
+        /* #userEmail:valid {
+             border: 1px solid green;
+         }
+
+         #userEmail:invalid {
+             border: 5px solid red;
+         }*/
+
+        .box {
+            position: relative;
+            margin: 20px auto;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid green;
+        }
+
+        .box input {
+            padding: 0 5px;
+            width: 280px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #CCC;
+        }
+
+        .box .userEmailTip {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 22px;
+            padding: 0 5px;
+            width: 282px;
+            height: 32px;
+            line-height: 32px;
+            color: #999;
+            cursor: text;
+        }
+
+        #textarea {
+            display: block;
+            margin: 20px auto;
+            width: 300px;
+            height: 50px;
+            border: 1px solid #CCC;
+
+            /*禁止用户拖动*/
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<!--
+  [input]
+  PC: text、password、button、submit、radio、checkbox、file、hidden...
+  移动: search、url、email、tel、number、color、range、date、time、week...(在IE6~8下不兼容)
+
+ 优势:
+    ->在移动端使用新的类型,用户输入的时候调取出对应的键盘(最符合用户输入的键盘),例如:我们使用type=text调取的公用键盘,输入邮箱的话我们需要来回的切换键盘找符合数字等；但是如果改成email，调取出来的键盘上数字、字母、常用邮箱字符、.com ...这些都有
+    ->传统的PC端表单验证我们使用正则和输入的内容进行匹配，但是在移动端新的类型中，我们想验证可以使用CSS3的valid/invalid和使用JS中的checkValidity (新提供的这些类型不需要我们自己写正则,他们内置了验证机制)
+    ->新增加placeholder属性做我们的文本框提示(这个提示效果非常的强大)，不管是PC还是移动端我们的提示都用placeholder，但是在IE浏览器中兼容性非常差，我们在单独的给IE用JS实现一套提示功能
+-->
+<script type="text/javascript">
+    //    document.getElementById("userEmail").onblur = function () {
+    //        var val = this.value.replace(/^ +| +$/g, "");
+    ////        var reg = /^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;//->邮箱验证的正则
+    ////        if (!reg.test(val)) {
+    ////            alert("邮箱格式不正确!");
+    ////        }
+    //        if (!this.checkValidity()) {
+    //            alert("邮箱格式不正确!");
+    //        }
+    //    };
+</script>
+
+<textarea id="textarea"></textarea>
+
+<!--省市县三级联动-->
+<select id="select">
+    <option>北京</option>
+    <option selected>河北</option>
+    <option>山西</option>
+</select>
+<select>
+    <option>北京</option>
+    <option selected>河北</option>
+    <option>山西</option>
+</select>
+
+
+<input type="text" list="datalist"/>
+<datalist id="datalist">
+   <option value="北京"></option>
+    <option value="河北"></option>
+</datalist>
+
+<div class="box">
+    <input type="email" id="userEmail" placeholder="请求输入常用的邮箱~"/>
+    <span class="userEmailTip" id="userEmailTip">请求输入常用的邮箱~</span>
+</div>
+<script type="text/javascript">
+    if (window.navigator.userAgent.indexOf("MSIE") > -1) {
+        var userEmailTip = document.getElementById("userEmailTip"),
+                userEmail = document.getElementById("userEmail");
+        userEmailTip.style.display = "block";
+        userEmail.placeholder = "";
+        userEmailTip.onclick = function () {
+            userEmail.focus();
+        };
+        userEmail.onkeydown = userEmail.onkeyup = function () {
+            var val = this.value;
+            if (val.length > 0) {
+                userEmailTip.style.display = "none";
+            } else {
+                userEmailTip.style.display = "block";
+            }
+        };
+    }
+</script>
+</body>
+</html>
