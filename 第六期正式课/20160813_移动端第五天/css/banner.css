@@ -1,0 +1,58 @@
+@charset "utf-8";
+html {
+    font-size: 100px; /*750PX设计稿 1REM=100PX*/
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.banner {
+    position: relative;
+    height: 3.6rem;
+    overflow: hidden;
+}
+
+.banner .wrapper {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+}
+
+.banner .wrapper .slide {
+    float: left;
+    width: 100%;
+    height: 100%;
+    background: #EEE;
+}
+
+.banner .wrapper .slide img {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.banner .tip {
+    position: absolute;
+    bottom: .1rem;
+    width: 100%;
+    height: .16rem;
+    line-height: .16rem;
+    text-align: center;
+}
+
+.banner .tip li {
+    display: inline-block;
+    margin: 0 .03rem;
+    width: .16rem;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.banner .tip li.bg {
+    background: #007aff;
+}

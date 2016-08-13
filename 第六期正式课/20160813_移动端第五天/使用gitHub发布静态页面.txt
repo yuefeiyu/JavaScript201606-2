@@ -1,0 +1,48 @@
+gitHub:一个网站https://github.com/  一个基于GIT的代码仓库管理平台,我们在网站中注册一个账号,然后可以在自己的账号下创建一到多个仓库,每一个仓库中都可以管理我们的项目源源码
+
+平时经常去的论坛网站:
+  gitHub
+  知乎
+  http://www.w3cplus.com/ (CSS/CSS3)  大漠
+  http://www.w3cfuns.com/ (CSS+JS...)
+  http://www.w3school.com.cn/
+  http://old.zhufengpeixun.cn/
+  http://www.htmleaf.com/
+  http://www.tuicool.com/
+  ...
+
+个人的博客
+  http://caibaojian.com/lifesinger 淘宝玉伯
+  http://www.ruanyifeng.com/ 阮一峰
+  http://www.css88.com/ 码头
+  ...
+
+http://www.zhufengpeixun.cn/course/20
+
+1、使用gitHub发布项目需要注意的是,只能发布前端项目,需要基于服务器端运行的程序(NODE、PHP、JAVA...)gitHub都是不支持的
+
+2、如何发布
+  ->创建一个仓库
+    README.MD 编写一些仓库的说明和类库或者插件的使用方法等  采用MARK DOWN编写
+
+  ->基于当前的仓库发布我们的项目
+    https://zhufengpeixun.github.io/myResume/
+    ==> https://zhufengpeixun.github.io/myResume/index.html  使用gitHub发布生成的地址,如果访问的HTML页面是index.html的话,我们可以直接的省略掉文件名(注意:只有访问的是index才可以省略,其余的是不能省略的)
+
+    使用gitHub发布页面完成后,我们的项目资源文件都在gh-pages这个分支下，gh-pages是gitHub在发布项目后默认生成的分支 ->如果以后想要管理发布的资源文件我们需要操作的是gh-pages这个分支
+
+  ->把仓库的默认分支改为gh-pages
+
+  ->把gh-pages分支下的内容克隆到本地
+    $ git clone  git仓库的地址
+
+    1)把gitHub远程仓库下托管的源文件下载到了本地
+    2)让本地的文件项目和远程仓库保持了一个链接的通道
+
+  ->修改本地的项目文件，把最新的项目文件上传到gh-pages这个分支下
+    $ git add .
+    $ git commit -m'备注'  =>如果出现 please tell me who you are?的时候按照提示执行git config xxx..两句话，依据话是配置邮箱，一句话是配置用户名(都是gitHub上的邮箱和用户名)，配置完成后重新commit
+    $ git push origin gh-pages  输入gitHub的用户名和密码提交即可
+
+  ->把地址生成二维码让其他人访问
+    http://cli.im/
