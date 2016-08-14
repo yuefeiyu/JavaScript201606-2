@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>珠峰培训本地存储</title>
+    <link type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .ifr {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!--<iframe src="http://www.lagou.com/" class="ifr"></iframe>-->
+
+<script type="text/javascript">
+    /*
+     前端开发中的本地存储：打开一个HTML页面,我们把一些信息存储到用户电脑当前浏览器的某一个位置,然后只要是用当前的浏览器打开一个HTML页面的话,就可以把这些信息获取到
+     cookie 兼容所有的浏览器的
+     ->大小限制:一般来说一个源下只能存储4KB的内容
+     ->cookie存在过期时间(过期时间我们可以自己设置):360这种安全卫士都有清理垃圾的功能,浏览器本身也有清除历史记录的功能,很多时候我们清理的时候都会把cookie清理掉
+     ->用户可能出于安全的角度禁用COOKIE:无痕浏览器
+
+     localStorage   HTML5中新提供的,不兼容IE6~8
+     ->一般一个源下可以存储5MB的内容
+     ->永久存储到本地(当然如果不需要我们可以使用JS把其清除掉):不会被软件清理掉
+
+     sessionStorage  会话存储,当前浏览器关闭,存储的信息就会清空掉
+
+
+     服务器存储:
+     session
+     数据库
+
+     页面之间的通信：
+     1、URL地址栏后面“问号传参”：点击列表页中某一条记录跳转转到详细页
+     2、本地存储：登录注册等，在登录页获取个人信息存储到本地浏览器中，在B页面中我们可以从本地获取这些数据
+     3、服务器存储：在A页面中把数据存储到服务器上，我们在B页面依然可以从服务器上获取到
+     4、iframe:把其他的页面嵌入到当前的页面中  CMS网站内容发布管理系统  CRM客户信息管理系统  OA企业办公管理系统  ERP企业战略管理系统...
+     */
+</script>
+
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">
+    //->localStorage
+    //setItem(key,value) 设置&&修改
+    //getItem(key) 获取
+    //removeItem(key) 一个个移除
+    //clear() 清空
+    //    localStorage.setItem("name", "珠峰培训");
+    //    localStorage.setItem("age", 7);
+    //    localStorage.setItem("age", 8);
+    //    console.log(localStorage.getItem("name"));
+    //    localStorage.removeItem("name");
+    //    console.log(localStorage.getItem("name"));
+    //    localStorage.clear();
+
+    //->sessionStorage
+    //    sessionStorage.setItem("name", "珠峰");
+
+    //-->我们存储的信息没有时间的限制,都是以属性名和属性值的方式存储的,但是存储的属性值都是字符串类型的
+    //-->我们有些时候存储的如果是中文汉字会出现乱码,我们需要把存储的内容先进行编译
+    /*localStorage.setItem("name", escape("珠峰培训"));
+     console.log(unescape(localStorage.getItem("name")));*/
+
+    /*localStorage.setItem("name", encodeURIComponent("珠峰培训"));
+     console.log(decodeURIComponent(localStorage.getItem("name")));*/
+
+
+    //    document.cookie = "name=珠峰培训哈";
+    //    document.cookie = "age=8";
+    //    cookie.set("name", "珠峰");
+    //    console.log(cookie.get("name"));
+
+    //->所有的本地存储都是明文存储，所以我们不要把重要的信息（用户密码、银行卡、电话号等）存储到本地，如果非要存储的话，一定要进行加密:
+    //->不可逆转的加密:一但加密就无法解密了 (密码都是不可逆转加密) MD5
+    //->可逆转的加密:加密后可以通过解密把数据获取到 (电话号码)
+
+    console.log(hex_md5("000000"));//->670b14728ad9902aecba32e22fa4f6bd
+</script>
+</body>
+</html>

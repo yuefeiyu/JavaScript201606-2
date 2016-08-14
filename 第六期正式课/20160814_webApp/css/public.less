@@ -1,0 +1,15 @@
+@color-black: #000;
+@color-gray: #999;
+@color-blue: #1c90f2;
+@color-blue-darken: darken(@color-blue, 15%);
+@color-white: #FFF;
+@color-red: #f82d2d;
+
+@url: "../img";
+@font16: .16rem;
+@font20: .2rem;
+
+.transition(@property: all;@duration: 1s;@time-function: linear;@delay: 0s) {
+  -webkit-transition: @arguments;
+  transition: @arguments;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="珠峰培训"/>
+    <!--<link href="" sizes="114x114" rel="apple-touch-icon-precomposed"/>-->
+    <title>珠峰培训</title>
+    <!--检测当前的浏览器是否为移动端的浏览器,不是的话跳转页面-->
+    <script charset="utf-8" type="text/javascript">
+        ~function () {
+            var reg1 = /AppleWebKit.*Mobile/i,
+                    reg2 = /MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/;
+            if (!reg1.test(navigator.userAgent) && !reg2.test(navigator.userAgent)) {
+                //->PC
+                window.location.href = "http://kbs.sports.qq.com/kbsweb/game.htm?mid=100002:2365";
+            }
+        }();
+    </script>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <link charset="utf-8" type="text/css" rel="stylesheet/less" href="css/index.less"/>
+</head>
+<body>
+<!--HEADER-->
+<header class="header">
+    <h1>腾讯体育</h1>
+
+    <a href="#">NBA</a>
+
+    <div class="menu"></div>
+    <div class="login">登录</div>
+</header>
+<!--NAV-->
+<nav class="nav">
+    <ul class="clear">
+        <li><a href="#">NBA</a></li>
+        <li><a href="#">CBA</a></li>
+        <li><a href="#">英超</a></li>
+        <li><a href="#">欧冠</a></li>
+        <li><a href="#">亚冠</a></li>
+        <li><a href="#">西甲</a></li>
+        <li><a href="#">德甲</a></li>
+        <li><a href="#">意甲</a></li>
+        <li><a href="#">法甲</a></li>
+        <li><a href="#">中超</a></li>
+        <li><a href="#">NFL</a></li>
+        <li><a href="#">综合</a></li>
+        <li><a href="#">社区</a></li>
+        <li><a href="#">欧洲杯</a></li>
+        <li><a href="#">下载</a></li>
+    </ul>
+</nav>
+<!--VIDEO-->
+<section class="video">
+    <!--只有当VIDEO的 PRELOAD="NONE"的时候 我们设置的POSTER才可以展示-->
+    <video src="http://111.202.85.148/vlive.qqvideo.tc.qq.com/j0020cap1lk.mp4?vkey=8DA37BB3E82600B2C57FDFCFCBFFCA9C47575BDB0AD8B03D17C85896AD317804EC85C4CA64C49076C52A4A1147B948F3CC520892AA10C12EBE9D834EAEC56BD99F3FBB1239E991C0848B145A30D891D82E8BF1AD6B86A259&br=60&platform=2&fmt=auto&level=0&sdtfrom=v3010&locid=50439c14-e7ab-428a-8769-265b5a53fd20&size=9537282&ocid=2541163948"
+           controls preload="none" poster="img/poster.jpg"></video>
+</section>
+<!--MATCH-->
+<section class="match">
+
+</section>
+
+<script charset="utf-8" type="text/javascript" src="js/zepto.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/iscroll-5.1.3.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/index.js"></script>
+
+<!--EJS-->
+<script charset="utf-8" type="text/javascript" src="js/ejs.min.js"></script>
+<script charset="utf-8" type="text/template" id="matchTemplate">
+    <div class="top">
+        <div class="left">
+            <img src="<%=matchInfo.leftBadge%>"/>
+            <span><%=matchInfo.leftGoal%></span>
+        </div>
+        <div class="center"><%=matchInfo.startTime.formatTime('{1}月{2}日{3}:{4}')%></div>
+        <div class="right">
+            <span><%=matchInfo.rightGoal%></span>
+            <img src="<%=matchInfo.rightBadge%>"/>
+        </div>
+    </div>
+    <div class="mid"><span class="progress"></span></div>
+    <div class="bot">
+        <div class="left"><%=matchInfo.leftSupport%></div>
+        <div class="center"><%=matchInfo.matchDesc%></div>
+        <div class="right"><%=matchInfo.rightSupport%></div>
+    </div>
+</script>
+
+<!--LESS-->
+<script charset="utf-8" type="text/javascript">
+    var less = {
+        env: "development",
+        poll: 1000
+    };
+</script>
+<script charset="utf-8" type="text/javascript" src="js/less-2.5.3.min.js"></script>
+<script charset="utf-8" type="text/javascript">
+    less.watch();
+</script>
+</body>
+</html>
